@@ -58,31 +58,6 @@ Instalar las dependencias:
 
 En macOS o Linux, el entorno se activa con: source .venv/bin/activate
 
-## Variables de entorno
-
-La configuracion sensible no esta en el codigo. Los nombres de las variables estan en el archivo .env.example. Hay que definirlas en la terminal antes de ejecutar:
-
-    $env:DJANGO_SECRET_KEY = 'una-clave-secreta-larga-y-aleatoria'
-    $env:DJANGO_DEBUG = "1"
-
-Para generar una clave aleatoria:
-
-    python -c "from django.core.management.utils import get_random_secret_key as g; print(g())"
-
-DJANGO_DEBUG igual a 1 solo debe usarse en desarrollo. DJANGO_ALLOWED_HOSTS es opcional (por defecto localhost y 127.0.0.1).
-
-## Ejecutar
-
-    python manage.py migrate
-    python manage.py createsuperuser
-    python manage.py runserver
-
-El panel de administracion queda en http://127.0.0.1:8000/admin
-
-## Pruebas
-
-    python manage.py test
-
 ## Estructura
 
 - config: configuracion del proyecto Django
@@ -102,4 +77,4 @@ El proyecto se desarrolla con Scrum, adaptado a trabajo individual: sprints sema
 
 ## Autor
 
-Jesus Portales Gajardo, Ingenieria en Informatica, Duoc UC.
+Jesus Portales G, Ingenieria en Informatica, Duoc UC.
