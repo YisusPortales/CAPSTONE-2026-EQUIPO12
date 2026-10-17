@@ -1,0 +1,86 @@
+[
+  {
+    "model": "reservas.habitacion",
+    "pk": 1,
+    "fields": {
+      "nombre": "Suite Picunche",
+      "tipo_bano": "privado",
+      "capacidad_max": 3,
+      "activa": true
+    }
+  },
+  {
+    "model": "reservas.habitacion",
+    "pk": 2,
+    "fields": {
+      "nombre": "Habitación Arrayán",
+      "tipo_bano": "compartido",
+      "capacidad_max": 3,
+      "activa": true
+    }
+  },
+  {
+    "model": "reservas.habitacion",
+    "pk": 3,
+    "fields": {
+      "nombre": "Habitación Roble",
+      "tipo_bano": "compartido",
+      "capacidad_max": 3,
+      "activa": true
+    }
+  },
+  {
+    "model": "reservas.servicio",
+    "pk": 1,
+    "fields": {
+      "nombre": "Masajes con piedra volcánica",
+      "incluido": false,
+      "activo": true
+    }
+  },
+  {
+    "model": "reservas.servicio",
+    "pk": 2,
+    "fields": {
+      "nombre": "Camas con arena volcánica",
+      "incluido": false,
+      "activo": true
+    }
+  },
+  {
+    "model": "reservas.servicio",
+    "pk": 3,
+    "fields": {
+      "nombre": "Baños de luna",
+      "incluido": false,
+      "activo": true
+    }
+  },
+  {
+    "model": "reservas.servicio",
+    "pk": 4,
+    "fields": {
+      "nombre": "Desayuno",
+      "incluido": true,
+      "activo": true
+    }
+  },
+  {
+    "model": "reservas.servicio",
+    "pk": 5,
+    "fields": {
+      "nombre": "Wi-Fi",
+      "incluido": true,
+      "activo": true
+    }
+  },
+  {
+    "model": "reservas.servicio",
+    "pk": 6,
+    "fields": {
+      "nombre": "Estacionamiento",
+      "incluido": true,
+      "activo": true
+    }
+  }
+]
