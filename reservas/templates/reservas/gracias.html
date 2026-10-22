@@ -1,13 +1,15 @@
-{% load i18n %}<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% translate "Solicitud recibida" %} - Hospedaje Rural Pirque</title>
-</head>
-<body>
-  <h1>{% translate "Solicitud recibida" %}</h1>
-  <p>{% translate "Gracias. Recibimos tu solicitud y te responderemos pronto." %}</p>
-  <p><a href="{% url 'reservas:solicitar' %}">{% translate "Hacer otra solicitud" %}</a></p>
-</body>
-</html>
+{% extends "reservas/base.html" %}
+{% load i18n %}
+{% block titulo %}{% translate "Solicitud recibida" %} - Hospedaje Rural Pirque{% endblock %}
+{% block contenido %}
+<section class="flex min-h-screen items-center bg-bosque-800 px-5 pt-20 text-beige-100">
+  <div class="mx-auto max-w-2xl text-center">
+    <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Solicitud recibida" %}</p>
+    <h1 class="mt-4 font-display text-5xl font-light leading-tight md:text-7xl">{% translate "Gracias." %}</h1>
+    <p class="mt-6 text-lg text-beige-100/80">{% translate "Recibimos tu solicitud y te responderemos pronto." %}</p>
+    <a href="{% url 'reservas:solicitar' %}" class="mt-10 inline-flex items-center gap-3 border border-white/60 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] transition hover:bg-white hover:text-bosque-950">
+      {% translate "Volver al inicio" %} <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+{% endblock %}

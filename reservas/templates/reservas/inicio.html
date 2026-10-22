@@ -1,0 +1,276 @@
+{% extends "reservas/base.html" %}
+{% load static i18n %}
+{% block titulo %}Hospedaje Rural Pirque · {% translate "Donde el tiempo vuelve a ser tuyo" %}{% endblock %}
+
+{% block contenido %}
+
+{# ===== Portada ===== #}
+<section class="relative isolate flex min-h-screen items-center overflow-hidden pt-20 text-white">
+  <img src="{% static 'img/portada.jpg' %}" alt="" class="absolute inset-0 -z-20 h-full w-full object-cover">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-bosque-950/80 via-bosque-950/40 to-transparent"></div>
+
+  <div class="mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-16 lg:grid-cols-2 lg:px-8">
+    <div>
+      <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-beige-200">{% translate "Hospedaje rural · Pirque, Chile" %}</p>
+      <h1 class="mt-6 font-display text-6xl font-light leading-[0.95] sm:text-7xl lg:text-8xl">{% translate "Donde el tiempo vuelve a ser tuyo." %}</h1>
+      <p class="mt-8 max-w-md font-display text-xl text-beige-100/90">{% translate "Un retiro de descanso y naturaleza en el corazón de Pirque. Para quienes buscan silencio, comodidad y reconexión." %}</p>
+      <div class="mt-10 flex flex-wrap items-center gap-6">
+        <a href="#reservar" class="inline-flex items-center gap-3 rounded-full bg-beige-100 px-7 py-4 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-bosque-950 transition hover:bg-white">
+          {% translate "Reservar estadía" %} <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+    {# ===== Recuadro de video ===== #}
+    <div class="w-full max-w-xl justify-self-end">
+      <div class="relative aspect-video overflow-hidden rounded-xl border border-white/40 bg-bosque-950/60 shadow-2xl">
+        {% if sitio.video_embed_url %}
+          <iframe src="{{ sitio.video_embed_url }}" title="{% translate 'Video de presentación' %}" class="h-full w-full" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        {% else %}
+          <video controls preload="metadata" class="h-full w-full object-cover" poster="{% static 'img/video.jpg' %}">
+            <source src="{% static 'video/presentacion.mp4' %}" type="video/mp4">
+          </video>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  </section>
+
+{# ===== Inicio ===== #}
+<section id="inicio" class="scroll-mt-24 bg-beige-100 py-24">
+  <div class="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-2 lg:px-8">
+    <div>
+      <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Nuestra forma de recibir" %}</p>
+      <h2 class="mt-6 font-display text-5xl font-light leading-tight text-bosque-800 md:text-7xl">{% translate "Aquí se viene a dormir bien." %}</h2>
+    </div>
+    <div class="border-l border-bosque-800/20 pl-8 lg:self-center">
+      <p class="font-display text-2xl leading-snug text-tinta/90">{% translate "Sin televisores, sin piscinas y sin apuro. Recibimos a un grupo a la vez para cuidar la calma, la intimidad y la experiencia de quienes llegan." %}</p>
+      <ul class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-[0.7rem] font-medium uppercase tracking-[0.15em]">
+        <li>✓ {% translate "Sin televisores" %}</li>
+        <li>✓ {% translate "Sin piscina" %}</li>
+        <li>✓ {% translate "Privacidad total" %}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# ===== Quiénes somos ===== #}
+<section id="quienes-somos" class="scroll-mt-24 bg-beige-200 py-20">
+  <div class="mx-auto max-w-3xl px-5 text-center lg:px-8">
+    <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Nosotros" %}</p>
+    <h2 class="mt-4 font-display text-4xl font-light text-bosque-800 md:text-6xl">{% translate "Quiénes somos" %}</h2>
+    <p class="mt-6 leading-relaxed text-tinta/80">{% translate "Somos un hospedaje rural íntimo pensado para el descanso real. Sin televisor en las habitaciones, con Wi-Fi, rodeados de naturaleza y a solo 15 minutos del centro de Pirque." %}</p>
+    <p class="mt-6 leading-relaxed text-tinta/80">{% translate "Preferimos grupos grandes, para garantizar una experiencia tranquila y personalizada. Nos adaptamos a lo que tú y tu grupo necesitan." %}</p>
+  </div>
+</section>
+
+{# ===== Habitaciones ===== #}
+<section id="habitaciones" class="scroll-mt-24 bg-bosque-800 py-24 text-beige-100">
+  <div class="mx-auto max-w-6xl px-5 lg:px-8">
+    <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "La casa" %} · 03 {% translate "habitaciones" %}</p>
+    <div class="mt-6 grid gap-8 lg:grid-cols-2 lg:items-end">
+      <h2 class="font-display text-5xl font-light leading-tight md:text-7xl">{% translate "Tres habitaciones, una casa para ustedes." %}</h2>
+      <p class="max-w-sm text-sm leading-relaxed text-beige-100/70 lg:justify-self-end">{% translate "Nos adaptamos al ritmo y la comodidad de cada grupo. La ocupación ideal es de dos personas por habitación, con posibilidad de sumar camas." %}</p>
+    </div>
+
+    <div class="mt-14 grid gap-5 md:grid-cols-3">
+      <button type="button" data-panel="panel-suite" class="group relative aspect-[3/4] overflow-hidden rounded-3xl text-left">
+        <img src="{% static 'img/La suite.jpg' %}" alt="" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy">
+        <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></span>
+        <span class="absolute inset-x-0 bottom-0 block p-6">
+          <span class="block text-[0.65rem] tracking-widest">01</span>
+          <span class="mt-2 block font-display text-4xl">{% translate "La Suite" %}</span>
+          <span class="mt-2 block text-sm">{% translate "Cama matrimonial + cama de 1 plaza" %}</span>
+          <span class="mt-1 block text-[0.65rem] uppercase tracking-[0.15em] text-beige-100/70">{% translate "Baño privado" %} · 2–3 {% translate "huéspedes" %}</span>
+          <span class="mt-4 inline-block text-[0.65rem] uppercase tracking-[0.2em] text-terracota-600">{% translate "Ver detalles" %} →</span>
+        </span>
+      </button>
+      <button type="button" data-panel="panel-familiar-1" class="group relative aspect-[3/4] overflow-hidden rounded-3xl text-left">
+        <img src="{% static 'img/habitacion_familiar1.jpg' %}" alt="" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy">
+        <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></span>
+        <span class="absolute inset-x-0 bottom-0 block p-6">
+          <span class="block text-[0.65rem] tracking-widest">02</span>
+          <span class="mt-2 block font-display text-4xl">{% translate "Habitación Familiar 1" %}</span>
+          <span class="mt-2 block text-sm">{% translate "Camarote + cama individual" %}</span>
+          <span class="mt-1 block text-[0.65rem] uppercase tracking-[0.15em] text-beige-100/70">{% translate "Baño compartido" %} · {% translate "Configuración flexible" %}</span>
+          <span class="mt-4 inline-block text-[0.65rem] uppercase tracking-[0.2em] text-terracota-600">{% translate "Ver detalles" %} →</span>
+        </span>
+      </button>
+      <button type="button" data-panel="panel-familiar-2" class="group relative aspect-[3/4] overflow-hidden rounded-3xl text-left">
+        <img src="{% static 'img/habitacion_familiar2.jpg' %}" alt="" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy">
+        <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></span>
+        <span class="absolute inset-x-0 bottom-0 block p-6">
+          <span class="block text-[0.65rem] tracking-widest">03</span>
+          <span class="mt-2 block font-display text-4xl">{% translate "Habitación Familiar 2" %}</span>
+          <span class="mt-2 block text-sm">{% translate "Camarote + cama individual" %}</span>
+          <span class="mt-1 block text-[0.65rem] uppercase tracking-[0.15em] text-beige-100/70">{% translate "Baño compartido" %} · {% translate "Configuración flexible" %}</span>
+          <span class="mt-4 inline-block text-[0.65rem] uppercase tracking-[0.2em] text-terracota-600">{% translate "Ver detalles" %} →</span>
+        </span>
+      </button>
+    </div>
+
+    <div class="mt-16 grid gap-8 border-t border-white/20 pt-10 sm:grid-cols-2 lg:grid-cols-5">
+      <p class="flex items-center gap-3 font-display text-3xl lg:col-span-1">{% translate "En cada estadía" %}</p>
+      <div><p class="font-display text-xl">{% translate "Desayuno incluido" %}</p><p class="mt-1 text-xs text-beige-100/60">{% translate "Preparado cada mañana con productos locales." %}</p></div>
+      <div><p class="font-display text-xl">{% translate "Wi-Fi disponible" %}</p><p class="mt-1 text-xs text-beige-100/60">{% translate "Conéctate cuando quieras; desconéctate cuando puedas." %}</p></div>
+      <div><p class="font-display text-xl">{% translate "Estacionamiento" %}</p><p class="mt-1 text-xs text-beige-100/60">{% translate "Espacio seguro para hasta 3 vehículos." %}</p></div>
+      <div><p class="font-display text-xl">{% translate "Grupo exclusivo" %}</p><p class="mt-1 text-xs text-beige-100/60">{% translate "Nunca mezclamos huéspedes que no se conocen." %}</p></div>
+    </div>
+  </div>
+</section>
+
+{# ===== Bienestar y territorio ===== #}
+<section id="experiencias" class="scroll-mt-24 bg-beige-100">
+  <div class="grid lg:grid-cols-2">
+    <img src="{% static 'img/bienestar.svg' %}" alt="" class="h-72 w-full object-cover lg:h-full" loading="lazy">
+    <div class="px-5 py-20 lg:px-16">
+      <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Bienestar y territorio" %}</p>
+      <h2 class="mt-6 font-display text-5xl font-light leading-tight text-bosque-800 md:text-6xl">{% translate "Descansar también es una experiencia." %}</h2>
+      <p class="mt-6 max-w-md text-tinta/80">{% translate "Rituales sencillos y memorias del territorio para volver a lo esencial." %}</p>
+
+      <ul class="mt-10 divide-y divide-bosque-800/20 border-y border-bosque-800/20">
+        <li><button type="button" data-panel="panel-piedra" class="flex w-full items-start justify-between gap-6 py-6 text-left transition hover:bg-bosque-800/5">
+          <span><span class="block font-display text-2xl text-bosque-800">{% translate "Piedra volcánica" %}</span><span class="mt-1 block text-sm text-tinta/70">{% translate "Masajes y cama de arena volcánica para una pausa profunda." %}</span></span><span class="text-xs text-terracota-600">01</span></button></li>
+        <li><button type="button" data-panel="panel-banos" class="flex w-full items-start justify-between gap-6 py-6 text-left transition hover:bg-bosque-800/5">
+          <span><span class="block font-display text-2xl text-bosque-800">{% translate "Baños de luna" %}</span><span class="mt-1 block text-sm text-tinta/70">{% translate "Noches de verano bajo el cielo abierto de Pirque." %}</span></span><span class="text-xs text-terracota-600">02</span></button></li>
+        <li><button type="button" data-panel="panel-memoria" class="flex w-full items-start justify-between gap-6 py-6 text-left transition hover:bg-bosque-800/5">
+          <span><span class="block font-display text-2xl text-bosque-800">{% translate "Memoria Picunche" %}</span><span class="mt-1 block text-sm text-tinta/70">{% translate "Historias del territorio para compartir, escuchar y aprender." %}</span></span><span class="text-xs text-terracota-600">03</span></button></li>
+        <li class="flex items-center justify-between gap-6 bg-beige-200/60 px-4 py-5">
+          <span class="flex items-center gap-4"><span class="bg-terracota-600 px-2 py-1 text-[0.6rem] font-medium uppercase tracking-wider text-white">{% translate "Próximamente" %}</span>
+          <span><span class="block font-display text-xl text-bosque-800">{% translate "Capacitaciones y talleres" %}</span><span class="block text-xs text-tinta/60">{% translate "Aún no habilitados" %}</span></span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# ===== Historia (texto breve y referencial) ===== #}
+<section id="historia" class="scroll-mt-24 bg-beige-200 py-20">
+  <div class="mx-auto max-w-3xl px-5 text-center lg:px-8">
+    <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Nosotros" %}</p>
+    <h2 class="mt-4 font-display text-4xl font-light text-bosque-800 md:text-6xl">{% translate "Historia" %}</h2>
+    <p class="mt-6 leading-relaxed text-tinta/80">{% translate "Pirque, al pie de la cordillera, pertenece al territorio ancestral del pueblo picunche, una de las comunidades mapuche del Valle Central. Conectar con la naturaleza es también conectar con quienes vivieron en ella antes." %}</p>
+    <p class="mt-4 text-sm italic text-tinta/50">{% translate "Texto referencial: el cliente debe revisarlo antes de publicar." %}</p>
+  </div>
+</section>
+
+{# ===== Ubicación ===== #}
+<section id="ubicacion" class="scroll-mt-24 border-t border-bosque-800/15 bg-beige-100">
+  <div class="grid lg:grid-cols-2">
+    <div class="px-5 py-20 lg:px-16">
+      <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Todo cerca, la naturaleza más cerca" %}</p>
+      <h2 class="mt-6 font-display text-5xl font-light leading-tight text-bosque-800 md:text-6xl">{% translate "Pirque a tu alcance." %}</h2>
+      <p class="mt-6 max-w-md text-tinta/80">{% translate "A minutos del centro, bancos, supermercado, CESFAM, farmacias y restaurantes. Muy cerca de Viña Concha y Toro y de los paisajes del Cajón del Maipo." %}</p>
+      <ul class="mt-10 divide-y divide-bosque-800/20 border-y border-bosque-800/20 font-display text-xl text-bosque-800">
+        <li class="flex justify-between py-4"><span>{% translate "Viña Concha y Toro" %}</span><span class="font-sans text-[0.65rem] uppercase tracking-wider text-terracota-600">8 min</span></li>
+        <li class="flex justify-between py-4"><span>{% translate "Centro de Pirque" %}</span><span class="font-sans text-[0.65rem] uppercase tracking-wider text-terracota-600">5 min</span></li>
+        <li class="flex justify-between py-4"><span>{% translate "Supermercado y farmacia" %}</span><span class="font-sans text-[0.65rem] uppercase tracking-wider text-terracota-600">6 min</span></li>
+        <li class="flex justify-between py-4"><span>{% translate "Cajón del Maipo" %}</span><span class="font-sans text-[0.65rem] uppercase tracking-wider text-terracota-600">25 min</span></li>
+      </ul>
+    </div>
+    <div class="relative min-h-[26rem] bg-bosque-800">
+      {% if sitio.mapa_embed_url %}
+        <iframe src="{{ sitio.mapa_embed_url }}" title="{% translate 'Mapa de ubicación' %}" class="absolute inset-0 h-full w-full border-0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+      {% else %}
+        <img src="{% static 'img/mapa.svg' %}" alt="" class="absolute inset-0 h-full w-full object-cover" loading="lazy">
+        <p class="absolute left-6 top-6 bg-beige-100/90 px-4 py-2 text-[0.7rem] uppercase tracking-[0.15em] text-bosque-800">{% translate "Mapa de ubicación (pendiente)" %}</p>
+      {% endif %}
+      <a href="{{ sitio.maps_url }}" target="_blank" rel="noopener noreferrer" class="absolute bottom-6 right-6 block bg-bosque-800 px-6 py-4 text-white transition hover:bg-bosque-950">
+        <span class="block text-[0.6rem] uppercase tracking-[0.2em] text-white/70">{% translate "Cómo llegar a la casa" %}</span>
+        <span class="mt-1 block text-sm font-medium">{% translate "Abrir en Google Maps" %} →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{# ===== Certificados (pendiente de contenido) ===== #}
+<section id="certificados" class="scroll-mt-24 border-t border-bosque-800/15 bg-beige-200 py-20">
+  <div class="mx-auto max-w-3xl px-5 text-center lg:px-8">
+    <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Nosotros" %}</p>
+    <h2 class="mt-4 font-display text-4xl font-light text-bosque-800 md:text-6xl">{% translate "Certificados" %}</h2>
+    <p class="mt-6 leading-relaxed text-tinta/80">{% translate "Aquí se mostrarán los certificados del hospedaje. El cliente enviará las imágenes." %}</p>
+    <button type="button" data-panel="panel-certificados" class="mt-8 inline-flex items-center gap-3 rounded-full bg-bosque-800 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">
+      {% translate "Ver certificados" %} <span aria-hidden="true">→</span>
+    </button>
+  </div>
+</section>
+
+{# ===== Reseñas (opción 2: enlaces a Google) ===== #}
+<section id="resenas" class="scroll-mt-24 bg-beige-100 pb-24">
+  <div class="mx-auto max-w-4xl border-t border-bosque-800/20 px-5 pt-20 text-center lg:px-8">
+    <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Reseñas de huéspedes" %}</p>
+    <h2 class="mt-6 font-display text-5xl font-light leading-tight text-bosque-800 md:text-6xl">{% translate "Lo que queda después de la visita." %}</h2>
+    <p class="mx-auto mt-6 max-w-lg text-tinta/70">{% translate "Lee las opiniones de quienes nos visitaron o comparte la tuya en Google." %}</p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="{{ sitio.resenas_url }}" target="_blank" rel="noopener noreferrer" class="rounded-full bg-bosque-800 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">{% translate "Leer reseñas" %}</a>
+      <a href="{{ sitio.dejar_resena_url }}" target="_blank" rel="noopener noreferrer" class="rounded-full bg-bosque-800 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">{% translate "Dejar una reseña" %}</a>
+    </div>
+  </div>
+</section>
+
+{# ===== Reserva ===== #}
+<section id="reservar" class="scroll-mt-24 bg-bosque-950 text-beige-100">
+  <div class="grid lg:grid-cols-2">
+    <div class="px-5 py-20 lg:px-16">
+      <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Reserva directa · mejor atención" %}</p>
+      <h2 class="mt-6 font-display text-5xl font-light leading-tight md:text-7xl">{% translate "Tu descanso comienza aquí." %}</h2>
+      <p class="mt-6 max-w-md text-beige-100/80">{% translate "Cuéntanos cuándo quieres venir. Recibimos un grupo por reserva para que la casa sea realmente de ustedes." %}</p>
+      <p class="mt-10 inline-flex h-28 w-28 items-center justify-center rounded-full border border-white/30 text-center font-display text-lg leading-tight">{% translate "Un grupo por estadía" %}</p>
+    </div>
+
+    <div class="bg-bosque-800 px-5 py-16 lg:px-16">
+      <form method="post" action="{% url 'reservas:solicitar' %}#reservar" class="grid gap-5 sm:grid-cols-2">
+        {% csrf_token %}
+        {% for error in form.non_field_errors %}<p class="text-sm text-red-300 sm:col-span-2" role="alert">{{ error }}</p>{% endfor %}
+
+        {% include "reservas/_campo.html" with campo=form.nombre_completo %}
+        {% include "reservas/_campo.html" with campo=form.email %}
+        {% include "reservas/_campo.html" with campo=form.telefono clase="sm:col-span-2" %}
+        {% include "reservas/_campo.html" with campo=form.fecha_llegada %}
+        {% include "reservas/_campo.html" with campo=form.fecha_salida %}
+        <div id="aviso-fechas" class="sm:col-span-2" aria-live="polite" data-cargando="{% translate 'Consultando disponibilidad…' %}"></div>
+        {% include "reservas/_campo.html" with campo=form.personas %}
+        {% include "reservas/_campo.html" with campo=form.alojamiento %}
+        
+
+        <div id="bloque-habitaciones" class="sm:col-span-2">
+          <p class="mb-2 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-beige-100/70">{{ form.habitaciones_elegidas.label }}</p>
+          <div class="grid gap-2 text-sm">
+            {% for opcion in form.habitaciones_elegidas %}
+              <label class="flex items-center gap-3">{{ opcion.tag }} {{ opcion.choice_label }}</label>
+            {% endfor %}
+          </div>
+          {% for error in form.habitaciones_elegidas.errors %}<p class="mt-1.5 text-sm text-red-300" role="alert">{{ error }}</p>{% endfor %}
+        </div>
+        {% include "reservas/_campo.html" with campo=form.comentarios clase="sm:col-span-2" %}
+
+        <div class="sm:col-span-2">
+          <label class="flex items-center gap-3 text-sm text-beige-100/80">{{ form.contactar_por_whatsapp }} {{ form.contactar_por_whatsapp.label }}</label>
+          {% for error in form.contactar_por_whatsapp.errors %}<p class="mt-1.5 text-sm text-red-300" role="alert">{{ error }}</p>{% endfor %}
+        </div>
+
+        <button type="submit" class="flex items-center justify-center gap-3 bg-terracota-600 px-6 py-4 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-terracota-600/90 sm:col-span-2">
+          {% translate "Consultar disponibilidad" %} <span aria-hidden="true">→</span>
+        </button>
+        <p class="text-center text-xs text-beige-100/70 sm:col-span-2">
+          <a href="{{ sitio.whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4 hover:text-white">{% translate "O escríbenos por WhatsApp" %} →</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+{# ===== Paneles laterales ===== #}
+<div id="panel-fondo" class="fixed inset-0 z-40 hidden bg-black/50" data-cerrar></div>
+{% translate "Baño privado" as txt_bano_privado %}
+{% translate "Baño compartido" as txt_bano_compartido %}
+{% translate "Camarote + cama individual" as txt_camarote %}
+{% translate "Descripción de ejemplo para esta experiencia." as txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-suite" titulo=_("La Suite") prefijo="suite" detalle=txt_bano_privado texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-familiar-1" titulo=_("Habitación Familiar 1") prefijo="familiar1" detalle=txt_camarote texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-familiar-2" titulo=_("Habitación Familiar 2") prefijo="familiar2" detalle=txt_camarote texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-piedra" titulo=_("Piedra volcánica") prefijo="piedra" detalle=_("Bienestar") texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-banos" titulo=_("Baños de luna") prefijo="banos" detalle=_("Bienestar") texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-memoria" titulo=_("Memoria Picunche") prefijo="memoria" detalle=_("Territorio") texto=txt_ejemplo %}
+{% include "reservas/_panel_certificados.html" %}
+
+{% endblock %}

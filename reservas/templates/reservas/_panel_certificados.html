@@ -1,0 +1,25 @@
+{% load static i18n %}
+{# Panel lateral con los certificados. Las imágenes de ejemplo (certificado-1, -2, -3) se reemplazan por las del cliente. #}
+<aside id="panel-certificados" role="dialog" aria-modal="true" aria-labelledby="panel-certificados-titulo" aria-hidden="true" inert
+       class="fixed right-0 top-0 z-50 h-full w-full max-w-lg translate-x-full overflow-y-auto bg-beige-100 shadow-2xl transition-transform duration-500 motion-reduce:transition-none">
+  <div class="sticky top-0 z-10 flex items-center justify-between border-b border-bosque-800/15 bg-beige-100 px-6 py-4">
+    <h3 id="panel-certificados-titulo" class="font-display text-3xl text-bosque-800">{% translate "Certificados" %}</h3>
+    <button type="button" data-cerrar class="flex h-10 w-10 items-center justify-center rounded-full border border-bosque-800/30 text-bosque-800 transition hover:bg-bosque-800 hover:text-white" aria-label="{% translate 'Cerrar' %}">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="space-y-6 p-6">
+    <p class="leading-relaxed text-tinta/80">{% translate "Toca un certificado para verlo en tamaño completo en una pestaña nueva." %}</p>
+    <ul class="grid gap-5 sm:grid-cols-2">
+      {% for n in "123" %}
+        {% static "img/certificado-"|add:n|add:".svg" as imagen %}
+        <li>
+          <a href="{{ imagen }}" target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded-lg border border-bosque-800/20 transition hover:border-terracota-600">
+            <img src="{{ imagen }}" alt="{% translate 'Certificado' %} {{ n }}" class="aspect-[4/3] w-full object-cover" loading="lazy">
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    <p class="text-sm italic text-tinta/50">{% translate "Imágenes de ejemplo: los certificados definitivos los enviará el cliente." %}</p>
+  </div>
+</aside>

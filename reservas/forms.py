@@ -2,20 +2,30 @@ from django import forms
 from django.db import transaction
 from django.utils import translation
 from django.utils.translation import gettext_lazy as _
- 
+from django.urls import reverse
+from django.utils import timezone
 from .models import Habitacion, Huesped, SolicitudReserva, telefono_validator
- 
- 
+
+
+# Clases de Tailwind para los campos del formulario (fondo oscuro del mockup).
+CLASE_CAMPO = (
+    "w-full border border-white/25 bg-bosque-700/70 px-4 py-3 text-sm text-beige-100 "
+    "placeholder-beige-100/50 [color-scheme:dark] focus:border-terracota-600 "
+    "focus:outline-none focus:ring-1 focus:ring-terracota-600"
+)
+CLASE_CASILLA = "h-4 w-4 accent-terracota-600"
+
+
 class SolicitudReservaForm(forms.ModelForm):
     """Formulario público de solicitud de reserva (consulta de disponibilidad).
- 
+
     Los datos del huésped se piden en el mismo formulario y se guardan en el
     modelo Huesped. Toda la validación ocurre en el servidor.
     """
- 
+
     ALOJAMIENTO_CASA = "casa"
     ALOJAMIENTO_HABITACIONES = "habitaciones"
- 
+
     nombre_completo = forms.CharField(label=_("Nombre de quien reserva"), max_length=120)
     email = forms.EmailField(label=_("Correo electrónico"))
     telefono = forms.CharField(
@@ -38,7 +48,7 @@ class SolicitudReservaForm(forms.ModelForm):
         required=False,
         widget=forms.CheckboxSelectMultiple,
     )
- 
+
     field_order = [
         "nombre_completo",
         "email",
@@ -51,7 +61,7 @@ class SolicitudReservaForm(forms.ModelForm):
         "comentarios",
         "contactar_por_whatsapp",
     ]
- 
+
     class Meta:
         model = SolicitudReserva
         fields = [
@@ -73,14 +83,35 @@ class SolicitudReservaForm(forms.ModelForm):
             "fecha_salida": forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
             "comentarios": forms.Textarea(attrs={"rows": 4, "maxlength": 1000}),
         }
- 
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["habitaciones_elegidas"].queryset = Habitacion.objects.filter(activa=True)
- 
+        self.fields["comentarios"].widget.attrs["placeholder"] = _(
+            "Cuéntanos sobre tu grupo, alimentación o necesidades especiales…"
+        )
+        self.fields["personas"].widget.attrs["min"] = 1
+        for campo in self.fields.values():
+            if isinstance(campo.widget, (forms.CheckboxInput, forms.CheckboxSelectMultiple)):
+                campo.widget.attrs["class"] = CLASE_CASILLA
+            else:
+                campo.widget.attrs["class"] = CLASE_CAMPO
+        # htmx: al cambiar una fecha, consulta la disponibilidad sin recargar.
+        for nombre in ("fecha_llegada", "fecha_salida"):
+            self.fields[nombre].widget.attrs.update({
+                "hx-get": reverse("reservas:disponibilidad"),
+                "hx-trigger": "change",
+                "hx-target": "#aviso-fechas",
+                "hx-indicator": "#aviso-fechas",
+                "hx-include": "#id_fecha_llegada, #id_fecha_salida",
+            })
+        hoy = timezone.localdate().isoformat()
+        for nombre in ("fecha_llegada", "fecha_salida"):
+            self.fields[nombre].widget.attrs["min"] = hoy
+
     def clean_email(self):
         return self.cleaned_data["email"].strip().lower()
- 
+
     def clean(self):
         datos = super().clean()
         if (
@@ -101,9 +132,9 @@ class SolicitudReservaForm(forms.ModelForm):
                 self.add_error(
                     "fecha_llegada",
                     _("Esas fechas no están disponibles. Prueba con otras o escríbenos."),
-                )
+                )   
         return datos
- 
+
     def save(self):
         """Crea (o reutiliza por correo) al huésped y guarda la solicitud."""
         with transaction.atomic():

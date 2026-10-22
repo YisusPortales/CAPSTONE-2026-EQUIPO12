@@ -1,26 +1,26 @@
 from django.contrib import admin
 
 from .models import Habitacion, Huesped, Servicio, SolicitudReserva
- 
- 
+
+
 @admin.register(Habitacion)
 class HabitacionAdmin(admin.ModelAdmin):
     list_display = ("nombre", "tipo_bano", "capacidad_ideal", "activa", "orden")
     list_filter = ("tipo_bano", "activa")
- 
- 
+
+
 @admin.register(Servicio)
 class ServicioAdmin(admin.ModelAdmin):
     list_display = ("nombre", "incluido", "activo", "orden")
     list_filter = ("incluido", "activo")
- 
- 
+
+
 @admin.register(Huesped)
 class HuespedAdmin(admin.ModelAdmin):
     list_display = ("nombre_completo", "email", "telefono", "creado_en")
     search_fields = ("nombre_completo", "email")
- 
- 
+
+
 @admin.register(SolicitudReserva)
 class SolicitudReservaAdmin(admin.ModelAdmin):
     list_display = (

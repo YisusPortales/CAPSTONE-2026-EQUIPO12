@@ -1,115 +1,13 @@
 [
-  {
-    "model": "reservas.habitacion",
-    "pk": 1,
-    "fields": {
-      "nombre": "La Suite",
-      "tipo_bano": "privado",
-      "capacidad_ideal": 3,
-      "activa": true,
-      "orden": 1
-    }
-  },
-  {
-    "model": "reservas.habitacion",
-    "pk": 2,
-    "fields": {
-      "nombre": "Habitación Familiar 1",
-      "tipo_bano": "compartido",
-      "capacidad_ideal": 3,
-      "activa": true,
-      "orden": 2
-    }
-  },
-  {
-    "model": "reservas.habitacion",
-    "pk": 3,
-    "fields": {
-      "nombre": "Habitación Familiar 2",
-      "tipo_bano": "compartido",
-      "capacidad_ideal": 3,
-      "activa": true,
-      "orden": 3
-    }
-  },
-  {
-    "model": "reservas.servicio",
-    "pk": 1,
-    "fields": {
-      "nombre": "Desayuno",
-      "incluido": true,
-      "activo": true,
-      "orden": 1
-    }
-  },
-  {
-    "model": "reservas.servicio",
-    "pk": 2,
-    "fields": {
-      "nombre": "Wi-Fi",
-      "incluido": true,
-      "activo": true,
-      "orden": 2
-    }
-  },
-  {
-    "model": "reservas.servicio",
-    "pk": 3,
-    "fields": {
-      "nombre": "Estacionamiento",
-      "incluido": true,
-      "activo": true,
-      "orden": 3
-    }
-  },
-  {
-    "model": "reservas.servicio",
-    "pk": 4,
-    "fields": {
-      "nombre": "Grupo exclusivo",
-      "incluido": true,
-      "activo": true,
-      "orden": 4
-    }
-  },
-  {
-    "model": "reservas.servicio",
-    "pk": 5,
-    "fields": {
-      "nombre": "Piedra volcánica (masajes y cama de arena)",
-      "incluido": false,
-      "activo": true,
-      "orden": 5
-    }
-  },
-  {
-    "model": "reservas.servicio",
-    "pk": 6,
-    "fields": {
-      "nombre": "Baños de luna",
-      "incluido": false,
-      "activo": true,
-      "orden": 6
-    }
-  },
-  {
-    "model": "reservas.servicio",
-    "pk": 7,
-    "fields": {
-      "nombre": "Memoria Picunche",
-      "incluido": false,
-      "activo": true,
-      "orden": 7
-    }
-  },
-  {
-    "model": "reservas.servicio",
-    "pk": 8,
-    "fields": {
-      "nombre": "Capacitaciones y talleres",
-      "incluido": false,
-      "activo": false,
-      "orden": 8
-    }
-  }
+  {"model": "reservas.habitacion", "pk": 1, "fields": {"nombre": "La Suite", "tipo_bano": "privado", "capacidad_ideal": 3, "activa": true, "orden": 1}},
+  {"model": "reservas.habitacion", "pk": 2, "fields": {"nombre": "Habitación Familiar 1", "tipo_bano": "compartido", "capacidad_ideal": 3, "activa": true, "orden": 2}},
+  {"model": "reservas.habitacion", "pk": 3, "fields": {"nombre": "Habitación Familiar 2", "tipo_bano": "compartido", "capacidad_ideal": 3, "activa": true, "orden": 3}},
+  {"model": "reservas.servicio", "pk": 1, "fields": {"nombre": "Desayuno", "incluido": true, "activo": true, "orden": 1}},
+  {"model": "reservas.servicio", "pk": 2, "fields": {"nombre": "Wi-Fi", "incluido": true, "activo": true, "orden": 2}},
+  {"model": "reservas.servicio", "pk": 3, "fields": {"nombre": "Estacionamiento", "incluido": true, "activo": true, "orden": 3}},
+  {"model": "reservas.servicio", "pk": 4, "fields": {"nombre": "Grupo exclusivo", "incluido": true, "activo": true, "orden": 4}},
+  {"model": "reservas.servicio", "pk": 5, "fields": {"nombre": "Piedra volcánica (masajes y cama de arena)", "incluido": false, "activo": true, "orden": 5}},
+  {"model": "reservas.servicio", "pk": 6, "fields": {"nombre": "Baños de luna", "incluido": false, "activo": true, "orden": 6}},
+  {"model": "reservas.servicio", "pk": 7, "fields": {"nombre": "Memoria Picunche", "incluido": false, "activo": true, "orden": 7}},
+  {"model": "reservas.servicio", "pk": 8, "fields": {"nombre": "Capacitaciones y talleres", "incluido": false, "activo": false, "orden": 8}}
 ]

@@ -1,0 +1,564 @@
+# Traducciones del sitio Hospedaje Rural Pirque (portugues).
+# Texto original: espanol.
+msgid ""
+msgstr ""
+"Project-Id-Version: Hospedaje Rural Pirque\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+
+#: reservas/forms.py:89
+msgid "Cuéntanos sobre tu grupo, alimentación o necesidades especiales…"
+msgstr "Conte-nos sobre o seu grupo, alimentação ou necessidades especiais…"
+
+#: reservas/forms.py:28
+msgid "Nombre de quien reserva"
+msgstr "Nome de quem está reservando"
+
+#: reservas/forms.py:29
+msgid "Correo electrónico"
+msgstr "E-mail"
+
+#: reservas/forms.py:31
+msgid "Teléfono (opcional)"
+msgstr "Telefone (opcional)"
+
+#: reservas/forms.py:37
+msgid "Alojamiento"
+msgstr "Hospedagem"
+
+#: reservas/forms.py:45
+msgid "¿Qué habitaciones?"
+msgstr "Quais quartos?"
+
+#: reservas/forms.py:74
+msgid "Llegada"
+msgstr "Chegada"
+
+#: reservas/forms.py:75
+msgid "Salida"
+msgstr "Saída"
+
+#: reservas/forms.py:76
+msgid "Número de personas"
+msgstr "Número de pessoas"
+
+#: reservas/forms.py:77
+msgid "¿Cómo podemos adaptar la estadía para ustedes?"
+msgstr "Como podemos adaptar a estadia para vocês?"
+
+#: reservas/forms.py:78
+msgid "Prefiero que me contacten por WhatsApp"
+msgstr "Prefiro ser contatado pelo WhatsApp"
+
+#: reservas/forms.py:110
+msgid "Elige al menos una habitación o selecciona la casa completa."
+msgstr "Escolha pelo menos um quarto ou selecione a casa inteira."
+
+#: reservas/forms.py:113
+msgid "Necesitamos tu teléfono para contactarte por WhatsApp."
+msgstr "Precisamos do seu telefone para entrar em contato pelo WhatsApp."
+
+#: reservas/forms.py:39
+msgid "Casa completa"
+msgstr "Casa inteira"
+
+#: reservas/forms.py:40
+msgid "Habitaciones específicas"
+msgstr "Quartos específicos"
+
+#: reservas/forms.py:121
+msgid "Esas fechas no están disponibles. Prueba con otras o escríbenos."
+msgstr "Essas datas não estão disponíveis. Tente outras ou escreva para nós."
+
+#: reservas/models.py:13
+msgid "Ingresa un teléfono válido."
+msgstr "Informe um telefone válido."
+
+#: reservas/models.py:37
+msgid "habitación"
+msgstr "quarto"
+
+#: reservas/models.py:38
+msgid "habitaciones"
+msgstr "quartos"
+
+#: reservas/models.py:69
+msgid "huésped"
+msgstr "hóspede"
+
+#: reservas/models.py:70
+msgid "huéspedes"
+msgstr "hóspedes"
+
+#: reservas/models.py:98
+msgid "solicitud de reserva"
+msgstr "solicitação de reserva"
+
+#: reservas/models.py:99
+msgid "solicitudes de reserva"
+msgstr "solicitações de reserva"
+
+#: reservas/models.py:24
+msgid "Baño privado"
+msgstr "Banheiro privativo"
+
+#: reservas/models.py:25
+msgid "Baño compartido"
+msgstr "Banheiro compartilhado"
+
+#: reservas/models.py:31
+msgid "Referencial: se pueden sumar camas según el grupo."
+msgstr "Referencial: é possível adicionar camas conforme o grupo."
+
+#: reservas/models.py:48
+msgid "Incluido en la estadía (si no, es adicional)."
+msgstr "Incluso na estadia (se não, é adicional)."
+
+#: reservas/models.py:51
+msgid "Desmarcar si aún no está habilitado (próximamente)."
+msgstr "Desmarque se ainda não estiver disponível (em breve)."
+
+#: reservas/models.py:78
+msgid "Pendiente"
+msgstr "Pendente"
+
+#: reservas/models.py:79
+msgid "Confirmada"
+msgstr "Confirmada"
+
+#: reservas/models.py:80
+msgid "Rechazada"
+msgstr "Recusada"
+
+#: reservas/models.py:138
+msgid "La fecha de llegada no puede ser pasada."
+msgstr "A data de chegada não pode ser passada."
+
+#: reservas/models.py:141
+msgid "La salida debe ser posterior a la llegada."
+msgstr "A saída deve ser posterior à chegada."
+
+#: reservas/models.py:143
+msgid "La estadía es muy larga; escríbenos para coordinarla."
+msgstr "A estadia é muito longa; escreva para nós para combinarmos."
+
+#: reservas/models.py:151
+msgid "Ya hay una estadía confirmada en esas fechas."
+msgstr "Já existe uma estadia confirmada nessas datas."
+
+#: reservas/templates/reservas/_cabecera.html:27
+msgid "Principal"
+msgstr "Principal"
+
+#: reservas/templates/reservas/_cabecera.html:28
+msgid "La casa"
+msgstr "A casa"
+
+#: reservas/templates/reservas/_cabecera.html:29
+msgid "Habitaciones"
+msgstr "Quartos"
+
+#: reservas/templates/reservas/_cabecera.html:30
+msgid "Experiencias"
+msgstr "Experiências"
+
+#: reservas/templates/reservas/_cabecera.html:31
+msgid "Ubicación"
+msgstr "Localização"
+
+#: reservas/templates/reservas/_cabecera.html:34
+msgid "Nosotros"
+msgstr "Sobre nós"
+
+#: reservas/templates/reservas/_cabecera.html:38
+msgid "Quiénes somos"
+msgstr "Quem somos"
+
+#: reservas/templates/reservas/_cabecera.html:39
+msgid "Historia"
+msgstr "Nossa história"
+
+#: reservas/templates/reservas/_cabecera.html:40
+msgid "Certificados"
+msgstr "Certificados"
+
+#: reservas/templates/reservas/_cabecera.html:57
+msgid "Reservar estadía"
+msgstr "Reservar estadia"
+
+#: reservas/templates/reservas/_cabecera.html:62
+msgid "Abrir menú"
+msgstr "Abrir menu"
+
+#: reservas/templates/reservas/_cabecera.html:65
+msgid "Móvil"
+msgstr "Mobile"
+
+#: reservas/templates/reservas/_panel.html:7
+msgid "Cerrar"
+msgstr "Fechar"
+
+#: reservas/templates/reservas/_panel.html:17
+msgid "Imagen de prueba"
+msgstr "Imagem de exemplo"
+
+#: reservas/templates/reservas/_panel.html:23
+msgid "Descripción de ejemplo: el texto y las fotos definitivas los enviará el cliente."
+msgstr "Descrição de exemplo: o texto e as fotos definitivos serão enviados pelo cliente."
+
+#: reservas/templates/reservas/_panel_certificados.html:12
+msgid "Toca un certificado para verlo en tamaño completo en una pestaña nueva."
+msgstr "Toque em um certificado para vê-lo em tamanho real em uma nova aba."
+
+#: reservas/templates/reservas/_panel_certificados.html:18
+msgid "Certificado"
+msgstr "Certificado"
+
+#: reservas/templates/reservas/_panel_certificados.html:23
+msgid "Imágenes de ejemplo: los certificados definitivos los enviará el cliente."
+msgstr "Imagens de exemplo: os certificados definitivos serão enviados pelo cliente."
+
+#: reservas/templates/reservas/_pie.html:10
+msgid "Descanso, naturaleza y memoria local"
+msgstr "Descanso, natureza e memória local"
+
+#: reservas/templates/reservas/_pie.html:14
+msgid "Región Metropolitana"
+msgstr "Região Metropolitana"
+
+#: reservas/templates/reservas/base.html:7
+msgid "Hospedaje rural en Pirque, Chile. Una casa para descansar, compartir y volver a la naturaleza al pie de la cordillera."
+msgstr "Hospedagem rural em Pirque, Chile. Uma casa para descansar, compartilhar e voltar à natureza aos pés da cordilheira."
+
+#: reservas/templates/reservas/base.html:11
+msgid "Saltar al contenido"
+msgstr "Ir para o conteúdo"
+
+#: reservas/templates/reservas/gracias.html:3
+msgid "Solicitud recibida"
+msgstr "Solicitação recebida"
+
+#: reservas/templates/reservas/gracias.html:8
+msgid "Gracias."
+msgstr "Obrigado."
+
+#: reservas/templates/reservas/gracias.html:9
+msgid "Recibimos tu solicitud y te responderemos pronto."
+msgstr "Recebemos sua solicitação e responderemos em breve."
+
+#: reservas/templates/reservas/gracias.html:11
+msgid "Volver al inicio"
+msgstr "Voltar ao início"
+
+#: reservas/templates/reservas/inicio.html:3
+msgid "Donde el tiempo vuelve a ser tuyo"
+msgstr "Onde o tempo volta a ser seu"
+
+#: reservas/templates/reservas/inicio.html:14
+msgid "Hospedaje rural · Pirque, Chile"
+msgstr "Hospedagem rural · Pirque, Chile"
+
+#: reservas/templates/reservas/inicio.html:15
+msgid "Donde el tiempo vuelve a ser tuyo."
+msgstr "Onde o tempo volta a ser seu."
+
+#: reservas/templates/reservas/inicio.html:16
+msgid "Una casa para descansar, compartir y volver a la naturaleza al pie de la cordillera."
+msgstr "Uma casa para descansar, compartilhar e voltar à natureza aos pés da cordilheira."
+
+#: reservas/templates/reservas/inicio.html:23
+msgid "Ver nuestra historia"
+msgstr "Veja nossa história"
+
+#: reservas/templates/reservas/inicio.html:32
+msgid "Video de presentación"
+msgstr "Vídeo de apresentação"
+
+#: reservas/templates/reservas/inicio.html:37
+msgid "Video de presentación (próximamente)"
+msgstr "Vídeo de apresentação (em breve)"
+
+#: reservas/templates/reservas/inicio.html:49
+msgid "Nuestra forma de recibir"
+msgstr "Nossa forma de receber"
+
+#: reservas/templates/reservas/inicio.html:50
+msgid "Aquí se viene a dormir bien."
+msgstr "Aqui se vem para dormir bem."
+
+#: reservas/templates/reservas/inicio.html:53
+msgid "Sin televisores, sin piscinas y sin apuro. Recibimos a un grupo a la vez para cuidar la calma, la intimidad y la experiencia de quienes llegan."
+msgstr "Sem televisores, sem piscinas e sem pressa. Recebemos um grupo de cada vez para cuidar da calma, da privacidade e da experiência de quem chega."
+
+#: reservas/templates/reservas/inicio.html:55
+msgid "Sin televisores"
+msgstr "Sem televisores"
+
+#: reservas/templates/reservas/inicio.html:56
+msgid "Sin piscina"
+msgstr "Sem piscina"
+
+#: reservas/templates/reservas/inicio.html:57
+msgid "Privacidad total"
+msgstr "Privacidade total"
+
+#: reservas/templates/reservas/inicio.html:68
+msgid "Texto de ejemplo. Aquí irá la presentación del hospedaje y de las personas que lo reciben. El cliente enviará el texto definitivo."
+msgstr "Texto de exemplo. Aqui virá a apresentação da hospedagem e das pessoas que a recebem. O cliente enviará o texto definitivo."
+
+#: reservas/templates/reservas/inicio.html:77
+msgid "Tres habitaciones, una casa para ustedes."
+msgstr "Três quartos, uma casa para vocês."
+
+#: reservas/templates/reservas/inicio.html:78
+msgid "Nos adaptamos al ritmo y la comodidad de cada grupo. La ocupación ideal es de dos personas por habitación, con posibilidad de sumar camas."
+msgstr "Nos adaptamos ao ritmo e ao conforto de cada grupo. A ocupação ideal é de duas pessoas por quarto, com possibilidade de adicionar camas."
+
+#: reservas/templates/reservas/inicio.html:87
+msgid "La Suite"
+msgstr "A Suíte"
+
+#: reservas/templates/reservas/inicio.html:88
+msgid "Cama matrimonial + cama de 1 plaza"
+msgstr "Cama de casal + cama de solteiro"
+
+#: reservas/templates/reservas/inicio.html:90
+msgid "Ver detalles"
+msgstr "Ver detalhes"
+
+#: reservas/templates/reservas/inicio.html:98
+msgid "Habitación Familiar 1"
+msgstr "Quarto Familiar 1"
+
+#: reservas/templates/reservas/inicio.html:99
+msgid "Camarote + cama individual"
+msgstr "Beliche + cama de solteiro"
+
+#: reservas/templates/reservas/inicio.html:100
+msgid "Configuración flexible"
+msgstr "Configuração flexível"
+
+#: reservas/templates/reservas/inicio.html:109
+msgid "Habitación Familiar 2"
+msgstr "Quarto Familiar 2"
+
+#: reservas/templates/reservas/inicio.html:118
+msgid "En cada estadía"
+msgstr "Em cada estadia"
+
+#: reservas/templates/reservas/inicio.html:119
+msgid "Desayuno incluido"
+msgstr "Café da manhã incluso"
+
+#: reservas/templates/reservas/inicio.html:119
+msgid "Preparado cada mañana con productos locales."
+msgstr "Preparado toda manhã com produtos locais."
+
+#: reservas/templates/reservas/inicio.html:120
+msgid "Wi-Fi disponible"
+msgstr "Wi-Fi disponível"
+
+#: reservas/templates/reservas/inicio.html:120
+msgid "Conéctate cuando quieras; desconéctate cuando puedas."
+msgstr "Conecte-se quando quiser; desconecte-se quando puder."
+
+#: reservas/templates/reservas/inicio.html:121
+msgid "Estacionamiento"
+msgstr "Estacionamento"
+
+#: reservas/templates/reservas/inicio.html:121
+msgid "Espacio seguro para hasta 3 vehículos."
+msgstr "Espaço seguro para até 3 veículos."
+
+#: reservas/templates/reservas/inicio.html:122
+msgid "Grupo exclusivo"
+msgstr "Grupo exclusivo"
+
+#: reservas/templates/reservas/inicio.html:122
+msgid "Nunca mezclamos huéspedes que no se conocen."
+msgstr "Nunca misturamos hóspedes que não se conhecem."
+
+#: reservas/templates/reservas/inicio.html:132
+msgid "Bienestar y territorio"
+msgstr "Bem-estar e território"
+
+#: reservas/templates/reservas/inicio.html:133
+msgid "Descansar también es una experiencia."
+msgstr "Descansar também é uma experiência."
+
+#: reservas/templates/reservas/inicio.html:134
+msgid "Rituales sencillos y memorias del territorio para volver a lo esencial."
+msgstr "Rituais simples e memórias do território para voltar ao essencial."
+
+#: reservas/templates/reservas/inicio.html:138
+msgid "Piedra volcánica"
+msgstr "Pedra vulcânica"
+
+#: reservas/templates/reservas/inicio.html:138
+msgid "Masajes y cama de arena volcánica para una pausa profunda."
+msgstr "Massagens e cama de areia vulcânica para uma pausa profunda."
+
+#: reservas/templates/reservas/inicio.html:140
+msgid "Baños de luna"
+msgstr "Banhos de lua"
+
+#: reservas/templates/reservas/inicio.html:140
+msgid "Noches de verano bajo el cielo abierto de Pirque."
+msgstr "Noites de verão sob o céu aberto de Pirque."
+
+#: reservas/templates/reservas/inicio.html:142
+msgid "Memoria Picunche"
+msgstr "Memória Picunche"
+
+#: reservas/templates/reservas/inicio.html:142
+msgid "Historias del territorio para compartir, escuchar y aprender."
+msgstr "Histórias do território para compartilhar, ouvir e aprender."
+
+#: reservas/templates/reservas/inicio.html:144
+msgid "Próximamente"
+msgstr "Em breve"
+
+#: reservas/templates/reservas/inicio.html:145
+msgid "Capacitaciones y talleres"
+msgstr "Capacitações e oficinas"
+
+#: reservas/templates/reservas/inicio.html:145
+msgid "Aún no habilitados"
+msgstr "Ainda não disponíveis"
+
+#: reservas/templates/reservas/inicio.html:156
+msgid "Pirque, al pie de la cordillera, pertenece al territorio ancestral del pueblo picunche, una de las comunidades mapuche del Valle Central. Conectar con la naturaleza es también conectar con quienes vivieron en ella antes."
+msgstr "Pirque, aos pés da cordilheira, pertence ao território ancestral do povo picunche, uma das comunidades mapuche do Vale Central. Conectar-se com a natureza é também conectar-se com quem viveu nela antes."
+
+#: reservas/templates/reservas/inicio.html:157
+msgid "Texto referencial: el cliente debe revisarlo antes de publicar."
+msgstr "Texto referencial: o cliente deve revisá-lo antes de publicar."
+
+#: reservas/templates/reservas/inicio.html:165
+msgid "Todo cerca, la naturaleza más cerca"
+msgstr "Tudo perto, a natureza ainda mais perto"
+
+#: reservas/templates/reservas/inicio.html:166
+msgid "Pirque a tu alcance."
+msgstr "Pirque ao seu alcance."
+
+#: reservas/templates/reservas/inicio.html:167
+msgid "A minutos del centro, bancos, supermercado, CESFAM, farmacias y restaurantes. Muy cerca de Viña Concha y Toro y de los paisajes del Cajón del Maipo."
+msgstr "A minutos do centro, bancos, supermercado, centro de saúde, farmácias e restaurantes. Muito perto da Viña Concha y Toro e das paisagens do Cajón del Maipo."
+
+#: reservas/templates/reservas/inicio.html:169
+msgid "Viña Concha y Toro"
+msgstr "Viña Concha y Toro"
+
+#: reservas/templates/reservas/inicio.html:170
+msgid "Centro de Pirque"
+msgstr "Centro de Pirque"
+
+#: reservas/templates/reservas/inicio.html:171
+msgid "Supermercado y farmacia"
+msgstr "Supermercado e farmácia"
+
+#: reservas/templates/reservas/inicio.html:172
+msgid "Cajón del Maipo"
+msgstr "Cajón del Maipo"
+
+#: reservas/templates/reservas/inicio.html:177
+msgid "Mapa de ubicación"
+msgstr "Mapa de localização"
+
+#: reservas/templates/reservas/inicio.html:180
+msgid "Mapa de ubicación (pendiente)"
+msgstr "Mapa de localização (pendente)"
+
+#: reservas/templates/reservas/inicio.html:183
+msgid "Cómo llegar a la casa"
+msgstr "Como chegar à casa"
+
+#: reservas/templates/reservas/inicio.html:184
+msgid "Abrir en Google Maps"
+msgstr "Abrir no Google Maps"
+
+#: reservas/templates/reservas/inicio.html:195
+msgid "Aquí se mostrarán los certificados del hospedaje. El cliente enviará las imágenes."
+msgstr "Aqui serão exibidos os certificados da hospedagem. O cliente enviará as imagens."
+
+#: reservas/templates/reservas/inicio.html:202
+msgid "Reseñas de huéspedes"
+msgstr "Avaliações de hóspedes"
+
+#: reservas/templates/reservas/inicio.html:203
+msgid "Lo que queda después de la visita."
+msgstr "O que fica depois da visita."
+
+#: reservas/templates/reservas/inicio.html:204
+msgid "Lee las opiniones de quienes nos visitaron o comparte la tuya en Google."
+msgstr "Leia as opiniões de quem nos visitou ou compartilhe a sua no Google."
+
+#: reservas/templates/reservas/inicio.html:206
+msgid "Leer reseñas"
+msgstr "Ler avaliações"
+
+#: reservas/templates/reservas/inicio.html:207
+msgid "Dejar una reseña"
+msgstr "Deixar uma avaliação"
+
+#: reservas/templates/reservas/inicio.html:216
+msgid "Reserva directa · mejor atención"
+msgstr "Reserva direta · melhor atendimento"
+
+#: reservas/templates/reservas/inicio.html:217
+msgid "Tu descanso comienza aquí."
+msgstr "Seu descanso começa aqui."
+
+#: reservas/templates/reservas/inicio.html:218
+msgid "Cuéntanos cuándo quieres venir. Recibimos un grupo por reserva para que la casa sea realmente de ustedes."
+msgstr "Conte-nos quando quer vir. Recebemos um grupo por reserva para que a casa seja realmente de vocês."
+
+#: reservas/templates/reservas/inicio.html:219
+msgid "Un grupo por estadía"
+msgstr "Um grupo por estadia"
+
+#: reservas/templates/reservas/inicio.html:253
+msgid "Consultar disponibilidad"
+msgstr "Consultar disponibilidade"
+
+#: reservas/templates/reservas/inicio.html:256
+msgid "O escríbenos por WhatsApp"
+msgstr "Ou escreva para nós no WhatsApp"
+
+#: reservas/templates/reservas/inicio.html:268
+msgid "Descripción de ejemplo para esta experiencia."
+msgstr "Descrição de exemplo para esta experiência."
+
+#: reservas/templates/reservas/inicio.html:272
+msgid "Bienestar"
+msgstr "Bem-estar"
+
+#: reservas/templates/reservas/inicio.html:274
+msgid "Territorio"
+msgstr "Território"
+
+#: (plantillas agregadas)
+msgid "Idioma"
+msgstr "Idioma"
+
+#: (plantillas agregadas)
+msgid "Ver certificados"
+msgstr "Ver certificados"
+
+#: (plantillas agregadas)
+msgid "Consultando disponibilidad…"
+msgstr "Consultando disponibilidade…"
+
+#: (plantillas agregadas)
+msgid "Fechas disponibles. Podemos recibirlos."
+msgstr "Datas disponíveis. Podemos receber vocês."
+
+#: (plantillas agregadas)
+msgid "Esas fechas ya están reservadas. Prueba con otras."
+msgstr "Essas datas já estão reservadas. Tente outras."

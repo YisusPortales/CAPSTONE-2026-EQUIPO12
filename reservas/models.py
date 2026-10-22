@@ -8,22 +8,22 @@ from django.core.validators import (
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
- 
+
 telefono_validator = RegexValidator(
     r"^\+?[0-9 ()-]{7,20}$", _("Ingresa un teléfono válido.")
 )
- 
+
 # Límites técnicos, no reglas del negocio: el hospedaje no define un máximo de
 # personas ni de noches, pero se evitan valores absurdos o abusivos.
 MAX_PERSONAS = 100
 MAX_NOCHES = 365
- 
- 
+
+
 class Habitacion(models.Model):
     class TipoBano(models.TextChoices):
         PRIVADO = "privado", _("Baño privado")
         COMPARTIDO = "compartido", _("Baño compartido")
- 
+
     nombre = models.CharField(max_length=80, unique=True)
     tipo_bano = models.CharField(max_length=12, choices=TipoBano.choices)
     capacidad_ideal = models.PositiveSmallIntegerField(
@@ -32,16 +32,16 @@ class Habitacion(models.Model):
     )
     activa = models.BooleanField(default=True)
     orden = models.PositiveSmallIntegerField(default=0)
- 
+
     class Meta:
         verbose_name = _("habitación")
         verbose_name_plural = _("habitaciones")
         ordering = ["orden", "nombre"]
- 
+
     def __str__(self):
         return self.nombre
- 
- 
+
+
 class Servicio(models.Model):
     nombre = models.CharField(max_length=80, unique=True)
     incluido = models.BooleanField(
@@ -51,34 +51,34 @@ class Servicio(models.Model):
         default=True, help_text=_("Desmarcar si aún no está habilitado (próximamente).")
     )
     orden = models.PositiveSmallIntegerField(default=0)
- 
+
     class Meta:
         ordering = ["orden", "nombre"]
- 
+
     def __str__(self):
         return self.nombre
- 
- 
+
+
 class Huesped(models.Model):
     nombre_completo = models.CharField(max_length=120)
     email = models.EmailField(unique=True)
     telefono = models.CharField(max_length=20, blank=True, validators=[telefono_validator])
     creado_en = models.DateTimeField(auto_now_add=True)
- 
+
     class Meta:
         verbose_name = _("huésped")
         verbose_name_plural = _("huéspedes")
- 
+
     def __str__(self):
         return f"{self.nombre_completo} <{self.email}>"
- 
- 
+
+
 class SolicitudReserva(models.Model):
     class Estado(models.TextChoices):
         PENDIENTE = "pendiente", _("Pendiente")
         CONFIRMADA = "confirmada", _("Confirmada")
         RECHAZADA = "rechazada", _("Rechazada")
- 
+
     huesped = models.ForeignKey(Huesped, on_delete=models.PROTECT, related_name="solicitudes")
     fecha_llegada = models.DateField()
     fecha_salida = models.DateField()
@@ -93,7 +93,7 @@ class SolicitudReserva(models.Model):
     estado = models.CharField(max_length=12, choices=Estado.choices, default=Estado.PENDIENTE)
     creada_en = models.DateTimeField(auto_now_add=True)
     actualizada_en = models.DateTimeField(auto_now=True)
- 
+
     class Meta:
         verbose_name = _("solicitud de reserva")
         verbose_name_plural = _("solicitudes de reserva")
@@ -109,17 +109,17 @@ class SolicitudReserva(models.Model):
                 name="personas_dentro_del_limite",
             ),
         ]
- 
+
     @property
     def noches(self):
         if self.fecha_llegada and self.fecha_salida:
             return (self.fecha_salida - self.fecha_llegada).days
         return None
- 
+
     @classmethod
     def hay_conflicto(cls, llegada, salida, excluir_pk=None):
         """Regla de negocio: se recibe un solo grupo a la vez.
- 
+
         Hay conflicto si alguna estadía CONFIRMADA se cruza con las fechas
         dadas. Salir un día y llegar otro grupo el mismo día no es conflicto.
         """
@@ -131,7 +131,7 @@ class SolicitudReserva(models.Model):
         if excluir_pk:
             cruces = cruces.exclude(pk=excluir_pk)
         return cruces.exists()
- 
+
     def clean(self):
         errores = {}
         if self.fecha_llegada and self._state.adding and self.fecha_llegada < timezone.localdate():
@@ -151,6 +151,6 @@ class SolicitudReserva(models.Model):
                 errores["fecha_llegada"] = _("Ya hay una estadía confirmada en esas fechas.")
         if errores:
             raise ValidationError(errores)
- 
+
     def __str__(self):
         return f"{self.huesped.nombre_completo} - {self.fecha_llegada} ({self.estado})"

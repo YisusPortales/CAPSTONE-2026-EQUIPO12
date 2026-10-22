@@ -1,0 +1,8 @@
+{% load i18n %}
+{% if estado == "libre" %}
+  <p class="text-sm text-emerald-300" role="status">✓ {% translate "Fechas disponibles. Podemos recibirlos." %}</p>
+{% elif estado == "ocupado" %}
+  <p class="text-sm text-red-300" role="status">✕ {% translate "Esas fechas ya están reservadas. Prueba con otras." %}</p>
+{% elif estado == "invalido" %}
+  <p class="text-sm text-amber-300" role="status">{% translate "La salida debe ser posterior a la llegada." %}</p>
+{% endif %}

@@ -1,0 +1,19 @@
+{% load i18n %}
+<footer class="bg-bosque-950 text-beige-100/80">
+  <div class="mx-auto grid max-w-7xl gap-8 px-5 py-12 text-sm lg:grid-cols-3 lg:px-8">
+    <div class="flex items-center gap-3">
+      <span class="flex h-9 w-9 items-center justify-center rounded-full border border-white/60">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c3-4 6-7 10-9"/></svg>
+      </span>
+      <div>
+        <p class="font-medium text-white">Hospedaje Rural Pirque</p>
+        <p class="text-[0.65rem] uppercase tracking-[0.2em] text-beige-100/60">{% translate "Descanso, naturaleza y memoria local" %}</p>
+      </div>
+    </div>
+    <div class="space-y-1 lg:text-center">
+      <p>Pirque, {% translate "Región Metropolitana" %} · Chile</p>
+      <p><a href="mailto:{{ sitio.email_contacto }}" class="underline-offset-4 hover:underline">{{ sitio.email_contacto }}</a></p>
+    </div>
+    <p class="lg:text-right">© 2026 Hospedaje Rural Pirque</p>
+  </div>
+</footer>
