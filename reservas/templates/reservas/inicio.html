@@ -122,7 +122,8 @@
 {# ===== Bienestar y territorio ===== #}
 <section id="experiencias" class="scroll-mt-24 bg-beige-100">
   <div class="grid lg:grid-cols-2">
-    <img src="{% static 'img/bienestar.svg' %}" alt="" class="h-72 w-full object-cover lg:h-full" loading="lazy">
+
+    {# Izquierda: textos #}
     <div class="px-5 py-20 lg:px-16">
       <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Bienestar y territorio" %}</p>
       <h2 class="mt-6 font-display text-5xl font-light leading-tight text-bosque-800 md:text-6xl">{% translate "Descansar también es una experiencia." %}</h2>
@@ -140,6 +141,11 @@
           <span><span class="block font-display text-xl text-bosque-800">{% translate "Capacitaciones y talleres" %}</span><span class="block text-xs text-tinta/60">{% translate "Aún no habilitados" %}</span></span></span></li>
       </ul>
     </div>
+    <div class="grid grid-rows-2 gap-1 lg:h-full">
+      <img src="{% static 'img/bano-de-luna1.jpg' %}" alt="{% translate 'Baños de luna' %}" class="h-56 w-full object-cover lg:h-full" loading="lazy">
+      <img src="{% static 'img/piedra-volcanica1.jpg' %}" alt="{% translate 'Piedra volcánica' %}" class="h-56 w-full object-cover lg:h-full" loading="lazy">
+    </div>
+
   </div>
 </section>
 
@@ -265,12 +271,12 @@
 {% translate "Baño compartido" as txt_bano_compartido %}
 {% translate "Camarote + cama individual" as txt_camarote %}
 {% translate "Descripción de ejemplo para esta experiencia." as txt_ejemplo %}
-{% include "reservas/_panel.html" with id="panel-suite" titulo=_("La Suite") prefijo="suite" detalle=txt_bano_privado texto=txt_ejemplo %}
-{% include "reservas/_panel.html" with id="panel-familiar-1" titulo=_("Habitación Familiar 1") prefijo="familiar1" detalle=txt_camarote texto=txt_ejemplo %}
-{% include "reservas/_panel.html" with id="panel-familiar-2" titulo=_("Habitación Familiar 2") prefijo="familiar2" detalle=txt_camarote texto=txt_ejemplo %}
-{% include "reservas/_panel.html" with id="panel-piedra" titulo=_("Piedra volcánica") prefijo="piedra" detalle=_("Bienestar") texto=txt_ejemplo %}
-{% include "reservas/_panel.html" with id="panel-banos" titulo=_("Baños de luna") prefijo="banos" detalle=_("Bienestar") texto=txt_ejemplo %}
-{% include "reservas/_panel.html" with id="panel-memoria" titulo=_("Memoria Picunche") prefijo="memoria" detalle=_("Territorio") texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-suite" titulo=_("La Suite") imagen_1="img/suite1.jpg" imagen_2="img/bano1.jpg" detalle=txt_bano_privado texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-familiar-1" titulo=_("Habitación Familiar 1") imagen_1="img/habitaciondoble.jpg" imagen_2="img/bano2.jpg" detalle=txt_camarote texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-familiar-2" titulo=_("Habitación Familiar 2") imagen_1="img/habitaciondoble.jpg" imagen_2="img/bano3.jpg" detalle=txt_camarote texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-piedra" titulo=_("Piedra volcánica") imagen_1="img/piedra-volcanica1.jpg" detalle=_("Bienestar") texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-banos" titulo=_("Baños de luna") imagen_1="img/bano-de-luna1.jpg" detalle=_("Bienestar") texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-memoria" titulo=_("Memoria Picunche") detalle=_("Territorio") texto=txt_ejemplo %}
 {% include "reservas/_panel_certificados.html" %}
 
 {% endblock %}

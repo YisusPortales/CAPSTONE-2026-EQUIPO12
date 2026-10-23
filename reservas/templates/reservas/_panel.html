@@ -1,5 +1,5 @@
 {% load static i18n %}
-{# Panel lateral. Parámetros: id, titulo, prefijo (de las imágenes), texto, detalle #}
+{# Panel lateral. Parámetros: id, titulo, detalle, texto y, opcionalmente, hasta tres imágenes (imagen_1, imagen_2, imagen_3) escritas como "img/archivo.jpg". Sin imágenes, no se muestra el carrusel. #}
 <aside id="{{ id }}" role="dialog" aria-modal="true" aria-labelledby="{{ id }}-titulo" aria-hidden="true" inert
        class="fixed right-0 top-0 z-50 h-full w-full max-w-lg translate-x-full overflow-y-auto bg-beige-100 shadow-2xl transition-transform duration-500 motion-reduce:transition-none">
   <div class="sticky top-0 z-10 flex items-center justify-between border-b border-bosque-800/15 bg-beige-100 px-6 py-4">
@@ -9,15 +9,13 @@
     </button>
   </div>
   <div class="space-y-4 p-6">
-    {# Imágenes de prueba: se reemplazarán por las fotos del cliente #}
-    <div class="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2">
-      {% static "img/"|add:prefijo|add:"-1.jpg" as imagen_1 %}
-      {% static "img/"|add:prefijo|add:"-2.jpg" as imagen_2 %}
-      {% static "img/"|add:prefijo|add:"-3.jpg" as imagen_3 %}
-      <img src="{{ imagen_1 }}" alt="{% translate 'Imagen de prueba' %}" class="aspect-[4/3] w-4/5 shrink-0 snap-center object-cover" loading="lazy">
-      <img src="{{ imagen_2 }}" alt="{% translate 'Imagen de prueba' %}" class="aspect-[4/3] w-4/5 shrink-0 snap-center object-cover" loading="lazy">
-      <img src="{{ imagen_3 }}" alt="{% translate 'Imagen de prueba' %}" class="aspect-[4/3] w-4/5 shrink-0 snap-center object-cover" loading="lazy">
-    </div>
+    {% if imagen_1 %}
+      <div class="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2">
+        <img src="{% static imagen_1 %}" alt="{{ titulo }}" class="aspect-[4/3] {% if imagen_2 %}w-4/5{% else %}w-full{% endif %} shrink-0 snap-center rounded-xl object-cover" loading="lazy">
+        {% if imagen_2 %}<img src="{% static imagen_2 %}" alt="{{ titulo }}" class="aspect-[4/3] w-4/5 shrink-0 snap-center rounded-xl object-cover" loading="lazy">{% endif %}
+        {% if imagen_3 %}<img src="{% static imagen_3 %}" alt="{{ titulo }}" class="aspect-[4/3] w-4/5 shrink-0 snap-center rounded-xl object-cover" loading="lazy">{% endif %}
+      </div>
+    {% endif %}
     <p class="text-[0.7rem] font-medium uppercase tracking-[0.18em] text-terracota-600">{{ detalle }}</p>
     <p class="leading-relaxed text-tinta/80">{{ texto }}</p>
     <p class="text-sm italic text-tinta/50">{% translate "Descripción de ejemplo: el texto y las fotos definitivas los enviará el cliente." %}</p>
