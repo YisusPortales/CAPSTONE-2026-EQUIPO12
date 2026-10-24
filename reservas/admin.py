@@ -1,7 +1,9 @@
 from django.contrib import admin
+from .models import Habitacion, Huesped, Servicio, SolicitudReserva, Resena
 
-from .models import Habitacion, Huesped, Servicio, SolicitudReserva
-
+admin.site.site_header = "Hospedaje Rural Pirque"
+admin.site.site_title = "Administración · Pirque"
+admin.site.index_title = "Panel de administración"
 
 @admin.register(Habitacion)
 class HabitacionAdmin(admin.ModelAdmin):
@@ -37,3 +39,13 @@ class SolicitudReservaAdmin(admin.ModelAdmin):
     search_fields = ("huesped__nombre_completo", "huesped__email")
     date_hierarchy = "fecha_llegada"
     filter_horizontal = ("habitaciones",)
+
+@admin.register(Resena)
+class ResenaAdmin(admin.ModelAdmin):
+    list_display = ("nombre", "pais", "puntuacion", "aprobada", "creada")
+    list_filter = ("aprobada", "puntuacion")
+    actions = ["aprobar"]
+
+    @admin.action(description="Aprobar reseñas seleccionadas")
+    def aprobar(self, request, queryset):
+        queryset.update(aprobada=True)

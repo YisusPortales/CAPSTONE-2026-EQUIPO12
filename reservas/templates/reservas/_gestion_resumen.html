@@ -1,0 +1,20 @@
+<div id="resumen" {% if oob %}hx-swap-oob="true"{% endif %} class="grid gap-4 md:grid-cols-3">
+  <div class="rounded-2xl bg-white p-5 shadow-sm">
+    <p class="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-terracota-600">Solicitudes pendientes</p>
+    <p class="mt-2 font-display text-5xl font-light text-bosque-800">{{ n_pendientes }}</p>
+  </div>
+  <div class="rounded-2xl bg-white p-5 shadow-sm">
+    <p class="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-terracota-600">Reseñas por aprobar</p>
+    <p class="mt-2 font-display text-5xl font-light text-bosque-800">{{ n_resenas_pendientes }}</p>
+  </div>
+  <div class="rounded-2xl bg-white p-5 shadow-sm">
+    <p class="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-terracota-600">Próximas llegadas</p>
+    <ul class="mt-2 space-y-1 text-sm">
+      {% for p in proximas %}
+        <li>{{ p.fecha_llegada|date:"d M" }} → {{ p.fecha_salida|date:"d M" }} · {{ p.huesped.nombre_completo }}</li>
+      {% empty %}
+        <li class="opacity-70">Sin estadías confirmadas.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

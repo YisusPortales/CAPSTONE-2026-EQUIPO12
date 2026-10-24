@@ -8,6 +8,8 @@ from django.core.validators import (
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db.models import Q
 
 telefono_validator = RegexValidator(
     r"^\+?[0-9 ()-]{7,20}$", _("Ingresa un teléfono válido.")
@@ -154,3 +156,29 @@ class SolicitudReserva(models.Model):
 
     def __str__(self):
         return f"{self.huesped.nombre_completo} - {self.fecha_llegada} ({self.estado})"
+
+class Resena(models.Model):
+    nombre = models.CharField(max_length=80)
+    pais = models.CharField(max_length=60, blank=True)
+    puntuacion = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    comentario = models.TextField(max_length=600)
+    creada = models.DateTimeField(auto_now_add=True)
+    aprobada = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["-creada"]
+        constraints = [
+            models.CheckConstraint(
+                condition=Q(puntuacion__gte=1, puntuacion__lte=5),
+                name="resena_puntuacion_1_a_5",
+            )
+        ]
+
+    @property
+    def estrellas(self):
+        return "★" * self.puntuacion + "☆" * (5 - self.puntuacion)
+
+    def __str__(self):
+        return f"{self.nombre} ({self.puntuacion}/5)"

@@ -207,7 +207,7 @@
     <h2 class="mt-6 font-display text-5xl font-light leading-tight text-bosque-800 md:text-6xl">{% translate "Lo que queda después de la visita." %}</h2>
     <p class="mx-auto mt-6 max-w-lg text-tinta/70">{% translate "Lee las opiniones de quienes nos visitaron o comparte la tuya en Google." %}</p>
     <div class="mt-10 flex flex-wrap justify-center gap-4">
-      <a href="{{ sitio.resenas_url }}" target="_blank" rel="noopener noreferrer" class="rounded-full bg-bosque-800 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">{% translate "Leer reseñas" %}</a>
+      <a href="{% url 'reservas:resenas' %}" class="rounded-full bg-bosque-800 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">{% translate "Leer reseñas" %}</a>
       <a href="{{ sitio.dejar_resena_url }}" target="_blank" rel="noopener noreferrer" class="rounded-full bg-bosque-800 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">{% translate "Dejar una reseña" %}</a>
     </div>
   </div>

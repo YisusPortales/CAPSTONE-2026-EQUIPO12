@@ -1,0 +1,34 @@
+:root {
+  --primary: #2f4a3a;
+  --secondary: #3d5f4a;
+  --primary-fg: #ffffff;
+  --body-bg: #f7f3ec;
+  --header-bg: #2f4a3a;
+  --header-color: #f5efe6;
+  --header-branding-color: #f5efe6;
+  --header-link-color: #ffffff;
+  --breadcrumbs-bg: #3d5f4a;
+  --breadcrumbs-fg: #e8e1d3;
+  --breadcrumbs-link-fg: #ffffff;
+  --link-fg: #2f4a3a;
+  --link-hover-color: #c8714b;
+  --button-bg: #2f4a3a;
+  --button-hover-bg: #3d5f4a;
+  --default-button-bg: #c8714b;
+  --default-button-hover-bg: #a85a38;
+  --object-tools-bg: #c8714b;
+  --object-tools-hover-bg: #a85a38;
+  --selected-row: #efe6d3;
+}
+
+#header { box-shadow: 0 2px 8px rgb(0 0 0 / 0.15); }
+#site-name a { letter-spacing: 0.04em; font-weight: 300; }
+
+.module { border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgb(0 0 0 / 0.08); }
+.module h2, .module caption { background: var(--primary); letter-spacing: 0.06em; }
+
+.button, input[type="submit"], .submit-row input, a.button, .object-tools a {
+  border-radius: 9999px;
+  padding-inline: 18px;
+}
+input, select, textarea { border-radius: 8px; }

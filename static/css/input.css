@@ -39,3 +39,44 @@ html {
   color: var(--color-beige-100);
   opacity: 0.7;
 }
+
+/* Selector de estrellas (el orden en el HTML es 5→1; row-reverse las muestra 1→5) */
+.estrellas {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row-reverse;
+  gap: 0.25rem;
+  border: 0;
+  padding: 0;
+}
+.estrellas input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.estrellas label {
+  font-size: 2.75rem;
+  line-height: 1;
+  color: #d1d5db;
+  cursor: pointer;
+  transition: color 0.15s, transform 0.15s;
+}
+.estrellas label:hover,
+.estrellas label:hover ~ label,
+.estrellas input:checked ~ label {
+  color: #f5b301;
+}
+.estrellas label:hover {
+  transform: scale(1.12);
+}
+.estrellas input:focus-visible + label {
+  outline: 2px solid #f5b301;
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Estrellas de las reseñas ya publicadas */
+.estrellas-fijas {
+  color: #f5b301;
+  letter-spacing: 0.1em;
+}

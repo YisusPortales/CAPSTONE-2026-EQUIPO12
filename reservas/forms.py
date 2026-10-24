@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.utils import timezone
 from .models import Habitacion, Huesped, SolicitudReserva, telefono_validator
-
+from .models import Resena
 
 # Clases de Tailwind para los campos del formulario (fondo oscuro del mockup).
 CLASE_CAMPO = (
@@ -155,3 +155,23 @@ class SolicitudReservaForm(forms.ModelForm):
             if not solicitud.casa_completa:
                 solicitud.habitaciones.set(self.cleaned_data["habitaciones_elegidas"])
         return solicitud
+
+class ResenaForm(forms.ModelForm):
+    # Campo trampa anti-spam: los humanos no lo ven, los bots sí lo llenan.
+    sitio_web = forms.CharField(required=False, widget=forms.HiddenInput)
+
+    puntuacion = forms.TypedChoiceField(
+        choices=[(n, "★" * n) for n in range(5, 0, -1)],
+        coerce=int,
+        widget=forms.RadioSelect,
+    )
+
+    class Meta:
+        model = Resena
+        fields = ["nombre", "pais", "puntuacion", "comentario"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for nombre in ("nombre", "pais", "comentario"):
+            self.fields[nombre].widget.attrs["class"] = CLASE_CAMPO
+        self.fields["comentario"].widget.attrs["rows"] = 4

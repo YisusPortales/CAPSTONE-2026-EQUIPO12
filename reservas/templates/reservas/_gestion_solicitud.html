@@ -1,0 +1,61 @@
+<article id="solicitud-{{ s.pk }}" class="rounded-2xl border bg-white p-5 shadow-sm">
+  <div class="flex flex-wrap items-start justify-between gap-3">
+    <div>
+      <h3 class="text-lg font-semibold text-bosque-800">{{ s.huesped.nombre_completo }}</h3>
+      <p class="text-sm opacity-70">
+        <a href="mailto:{{ s.huesped.email }}" class="underline">{{ s.huesped.email }}</a>
+        {% if s.huesped.telefono %} · {{ s.huesped.telefono }}{% endif %}
+        {% if s.contactar_por_whatsapp %} · <span class="font-medium">Prefiere WhatsApp</span>{% endif %}
+      </p>
+    </div>
+    <span class="rounded-full px-3 py-1 text-xs font-medium uppercase tracking-wider
+      {% if s.estado == 'confirmada' %}bg-green-100 text-green-800
+      {% elif s.estado == 'rechazada' %}bg-red-100 text-red-800
+      {% else %}bg-amber-100 text-amber-800{% endif %}">{{ s.get_estado_display }}</span>
+  </div>
+
+  <dl class="mt-4 grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+    <div><dt class="opacity-60">Llegada</dt><dd class="font-medium">{{ s.fecha_llegada|date:"D d M Y" }}</dd></div>
+    <div><dt class="opacity-60">Salida</dt><dd class="font-medium">{{ s.fecha_salida|date:"D d M Y" }}</dd></div>
+    <div><dt class="opacity-60">Noches</dt><dd class="font-medium">{{ s.noches }}</dd></div>
+    <div><dt class="opacity-60">Personas</dt><dd class="font-medium">{{ s.personas }}</dd></div>
+  </dl>
+
+  <p class="mt-3 text-sm">
+    {% if s.casa_completa %}Casa completa{% else %}Habitaciones:
+      {% for h in s.habitaciones.all %}{{ h.nombre }}{% if not forloop.last %}, {% endif %}{% empty %}sin especificar{% endfor %}
+    {% endif %}
+  </p>
+
+  {% if s.comentarios %}<p class="mt-3 rounded-lg bg-beige-100 p-3 text-sm">{{ s.comentarios|linebreaksbr }}</p>{% endif %}
+
+  {% if s.conflicto %}
+    <p class="mt-3 rounded-lg bg-amber-100 p-3 text-sm text-amber-800">⚠ Estas fechas se cruzan con una estadía ya confirmada.</p>
+  {% endif %}
+  {% if error %}
+    <p class="mt-3 rounded-lg bg-red-100 p-3 text-sm text-red-800" role="alert">{{ error }}</p>
+  {% endif %}
+
+  <div class="mt-4 flex flex-wrap gap-2">
+    {% if s.estado != 'confirmada' %}
+      <button type="button" hx-post="{% url 'reservas:gestion_solicitud' s.pk 'confirmar' %}"
+              hx-target="#solicitud-{{ s.pk }}" hx-swap="outerHTML"
+              hx-confirm="¿Confirmar la estadía de {{ s.huesped.nombre_completo }}?"
+              class="rounded-full bg-bosque-800 px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">Confirmar</button>
+    {% endif %}
+    {% if s.estado != 'rechazada' %}
+      <button type="button" hx-post="{% url 'reservas:gestion_solicitud' s.pk 'rechazar' %}"
+              hx-target="#solicitud-{{ s.pk }}" hx-swap="outerHTML"
+              hx-confirm="¿Rechazar esta solicitud?"
+              class="rounded-full border border-red-300 px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-red-700 transition hover:bg-red-50">Rechazar</button>
+    {% endif %}
+    {% if s.estado != 'pendiente' %}
+      <button type="button" hx-post="{% url 'reservas:gestion_solicitud' s.pk 'reabrir' %}"
+              hx-target="#solicitud-{{ s.pk }}" hx-swap="outerHTML"
+              class="rounded-full border px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] transition hover:bg-beige-100">Volver a pendiente</button>
+    {% endif %}
+  </div>
+
+  <p class="mt-3 text-xs opacity-60">Recibida {{ s.creada_en|date:"d M Y H:i" }} · idioma {{ s.idioma|upper }}</p>
+</article>
+{% if oob %}{% include "reservas/_gestion_resumen.html" %}{% endif %}

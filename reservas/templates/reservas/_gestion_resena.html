@@ -1,0 +1,28 @@
+{% if not eliminada %}
+<article id="resena-{{ r.pk }}" class="rounded-2xl border bg-white p-5 shadow-sm">
+  <div class="flex items-center justify-between gap-3">
+    <p class="text-lg estrellas-fijas" aria-label="{{ r.puntuacion }} / 5">{{ r.estrellas }}</p>
+    <span class="rounded-full px-3 py-1 text-xs font-medium uppercase tracking-wider {% if r.aprobada %}bg-green-100 text-green-800{% else %}bg-amber-100 text-amber-800{% endif %}">
+      {% if r.aprobada %}Publicada{% else %}Por aprobar{% endif %}
+    </span>
+  </div>
+  <p class="mt-2 text-sm">{{ r.comentario }}</p>
+  <p class="mt-2 text-xs opacity-60">{{ r.nombre }}{% if r.pais %} · {{ r.pais }}{% endif %} · {{ r.creada|date:"d M Y" }}</p>
+  <div class="mt-3 flex flex-wrap gap-2">
+    {% if r.aprobada %}
+      <button type="button" hx-post="{% url 'reservas:gestion_resena' r.pk 'ocultar' %}"
+              hx-target="#resena-{{ r.pk }}" hx-swap="outerHTML"
+              class="rounded-full border px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] transition hover:bg-beige-100">Ocultar</button>
+    {% else %}
+      <button type="button" hx-post="{% url 'reservas:gestion_resena' r.pk 'aprobar' %}"
+              hx-target="#resena-{{ r.pk }}" hx-swap="outerHTML"
+              class="rounded-full bg-bosque-800 px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">Aprobar</button>
+    {% endif %}
+    <button type="button" hx-post="{% url 'reservas:gestion_resena' r.pk 'eliminar' %}"
+            hx-target="#resena-{{ r.pk }}" hx-swap="outerHTML"
+            hx-confirm="¿Eliminar esta reseña definitivamente?"
+            class="rounded-full border border-red-300 px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-red-700 transition hover:bg-red-50">Eliminar</button>
+  </div>
+</article>
+{% endif %}
+{% if oob %}{% include "reservas/_gestion_resumen.html" %}{% endif %}

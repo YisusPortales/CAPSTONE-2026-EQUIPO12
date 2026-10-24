@@ -1,0 +1,40 @@
+{% extends "reservas/base.html" %}
+
+{% block contenido %}
+<section class="mx-auto max-w-6xl px-4 py-12"
+         hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <h1 class="font-display text-4xl font-light text-bosque-800">Panel de gestión</h1>
+    <a href="{% url 'admin:index' %}" class="text-sm underline text-bosque-800">Ir al administrador de Django</a>
+  </div>
+
+  <div class="mt-8">{% include "reservas/_gestion_resumen.html" %}</div>
+
+  <h2 class="mt-12 text-2xl font-semibold text-bosque-800">Solicitudes de reserva</h2>
+  <nav class="mt-4 flex flex-wrap gap-2" aria-label="Filtrar por estado">
+    {% for valor, etiqueta in estados %}
+      <a href="?estado={{ valor }}"
+         class="rounded-full border px-4 py-2 text-sm {% if estado == valor %}bg-bosque-800 text-white{% else %}bg-white text-bosque-800{% endif %}">{{ etiqueta }}</a>
+    {% endfor %}
+    <a href="?estado=todas"
+       class="rounded-full border px-4 py-2 text-sm {% if estado == 'todas' %}bg-bosque-800 text-white{% else %}bg-white text-bosque-800{% endif %}">Todas</a>
+  </nav>
+
+  <div class="mt-4 grid gap-4">
+    {% for s in solicitudes %}
+      {% include "reservas/_gestion_solicitud.html" %}
+    {% empty %}
+      <p class="rounded-2xl bg-white p-5">No hay solicitudes en este estado.</p>
+    {% endfor %}
+  </div>
+
+  <h2 class="mt-12 text-2xl font-semibold text-bosque-800">Reseñas</h2>
+  <div class="mt-4 grid gap-4 md:grid-cols-2">
+    {% for r in resenas %}
+      {% include "reservas/_gestion_resena.html" %}
+    {% empty %}
+      <p class="rounded-2xl bg-white p-5">Aún no hay reseñas.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
