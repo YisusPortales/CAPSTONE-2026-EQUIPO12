@@ -80,3 +80,94 @@ html {
   color: #f5b301;
   letter-spacing: 0.1em;
 }
+
+/* ===== Animaciones al hacer scroll ===== */
+html { scroll-behavior: smooth; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(48px);
+  filter: blur(6px);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal:not(.is-visible) { will-change: opacity, transform, filter; }
+.reveal[data-reveal="left"] { transform: translateX(-56px); }
+.reveal[data-reveal="right"] { transform: translateX(56px); }
+.reveal[data-reveal="zoom"] { transform: scale(0.92); }
+.reveal.is-visible { opacity: 1; transform: none; filter: none; }
+
+/* Títulos: aparecen palabra por palabra */
+.titulo-animado .palabra {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+}
+.titulo-animado .palabra > span {
+  display: inline-block;
+  transform: translateY(115%);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 80ms + 150ms);
+}
+.titulo-animado.is-visible .palabra > span { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+  .titulo-animado .palabra > span { transform: none; transition: none; }
+}
+
+/* ===== Menú: marca la sección que se está viendo ===== */
+#menu-escritorio a,
+#menu-escritorio summary {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.6rem;
+  transition: text-decoration-color 0.3s ease, color 0.3s ease;
+}
+#menu-escritorio a[aria-current="true"],
+#menu-escritorio details[data-activo] > summary {
+  color: #f3ecdf;
+  text-decoration-color: currentColor;
+}
+
+/* Elementos de los menús desplegables y del menú móvil */
+header details a[aria-current="true"] {
+  background: rgb(255 255 255 / 0.12);
+}
+
+/* ===== Modo oscuro ===== */
+html[data-tema="dark"] {
+  color-scheme: dark;
+  --color-tinta: #e7ebe6;
+}
+
+/* Fondos claros → oscuros (el botón de la portada conserva su fondo beige) */
+html[data-tema="dark"] .bg-beige-100:not(.text-bosque-950) { background-color: #101915; }
+html[data-tema="dark"] .bg-beige-200 { background-color: #16211b; }
+html[data-tema="dark"] .bg-beige-200\/60 { background-color: rgb(255 255 255 / 0.05); }
+html[data-tema="dark"] .bg-beige-100\/90 { background-color: rgb(16 25 21 / 0.9); }
+html[data-tema="dark"] .bg-white { background-color: #1b2822; }
+
+/* Textos y bordes verdes oscuros → claros */
+html[data-tema="dark"] .text-bosque-800 { color: #dbe7de; }
+html[data-tema="dark"] .border-bosque-800 { border-color: #dbe7de; }
+html[data-tema="dark"] .border-bosque-800\/20,
+html[data-tema="dark"] .border-bosque-800\/15 { border-color: rgb(255 255 255 / 0.15); }
+html[data-tema="dark"] .divide-bosque-800\/20 > :not(:last-child) { border-color: rgb(255 255 255 / 0.15); }
+html[data-tema="dark"] .hover\:bg-bosque-800\/5:hover { background-color: rgb(255 255 255 / 0.05); }
+
+/* Portada: foto de día / de noche */
+html[data-tema="dark"] .portada-dia { display: none; }
+html[data-tema="dark"] .portada-noche { display: block; }
+
+/* Botón sol/luna */
+#tema-toggle .icono-sol { display: none; }
+html[data-tema="dark"] #tema-toggle .icono-sol { display: block; }
+html[data-tema="dark"] #tema-toggle .icono-luna { display: none; }

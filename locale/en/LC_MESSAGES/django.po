@@ -562,3 +562,95 @@ msgstr "Dates available. We can host you."
 #: (plantillas agregadas)
 msgid "Esas fechas ya están reservadas. Prueba con otras."
 msgstr "Those dates are already booked. Try other dates."
+
+#: (plantillas agregadas)
+msgid "Aún no hay reseñas. ¡Sé el primero en dejar la tuya!"
+msgstr "There are no reviews yet. Be the first to leave yours!"
+
+#: (plantillas agregadas)
+msgid "Deja tu reseña"
+msgstr "Leave your review"
+
+#: (plantillas agregadas)
+msgid "Enviar reseña"
+msgstr "Submit review"
+
+#: (plantillas agregadas)
+msgid "Preferimos grupos grandes, para garantizar una experiencia tranquila y personalizada. Nos adaptamos a lo que tú y tu grupo necesitan."
+msgstr "We prefer larger groups, to guarantee a calm and personalized experience. We adapt to what you and your group need."
+
+#: (plantillas agregadas)
+msgid "Puntuación"
+msgstr "Rating"
+
+#: (plantillas agregadas)
+msgid "Somos un hospedaje rural íntimo pensado para el descanso real. Sin televisor en las habitaciones, con Wi-Fi, rodeados de naturaleza y a solo 15 minutos del centro de Pirque."
+msgstr "We are an intimate rural lodge designed for real rest. No TV in the rooms, with Wi-Fi, surrounded by nature and just 15 minutes from the center of Pirque."
+
+#: (plantillas agregadas)
+msgid "Un retiro de descanso y naturaleza en el corazón de Pirque. Para quienes buscan silencio, comodidad y reconexión."
+msgstr "A retreat of rest and nature in the heart of Pirque. For those seeking silence, comfort and reconnection."
+
+#: (plantillas agregadas)
+msgid "reseñas"
+msgstr "reviews"
+
+#: (plantillas agregadas)
+msgid "¡Gracias! Tu reseña será publicada una vez revisada."
+msgstr "Thank you! Your review will be published once it has been reviewed."
+
+#: (plantillas agregadas)
+msgid "Galería"
+msgstr "Gallery"
+
+#: (plantillas agregadas)
+msgid "Conoce la casa y su entorno."
+msgstr "Discover the house and its surroundings."
+
+#: (plantillas agregadas)
+msgid "Ampliar foto"
+msgstr "Enlarge photo"
+
+#: (plantillas agregadas)
+msgid "Pronto compartiremos fotos de la casa."
+msgstr "We will soon share photos of the house."
+
+#: (plantillas agregadas)
+msgid "Ver galería"
+msgstr "View gallery"
+
+#: (plantillas agregadas)
+msgid "Exteriores"
+msgstr "Outdoors"
+
+#: (plantillas agregadas)
+msgid "Familias"
+msgstr "Families"
+
+#: (plantillas agregadas)
+msgid "Comidas y bebidas"
+msgstr "Food and drinks"
+
+#: (plantillas agregadas)
+msgid "Todas"
+msgstr "All"
+
+#: (plantillas agregadas)
+msgid "Videos"
+msgstr "Videos"
+
+#: (plantillas agregadas)
+msgid "Filtrar la galería"
+msgstr "Filter the gallery"
+
+#: (plantillas agregadas)
+msgid "Reproducir video"
+msgstr "Play video"
+
+#: (plantillas agregadas)
+msgid "Ver en el sitio original"
+msgstr "View on the original site"
+
+#: (plantillas agregadas)
+msgid "Cambiar entre modo claro y oscuro"
+msgstr "Switch between light and dark mode"

@@ -2,17 +2,20 @@
 {% load static i18n %}
 {% block titulo %}Hospedaje Rural Pirque · {% translate "Donde el tiempo vuelve a ser tuyo" %}{% endblock %}
 
+
 {% block contenido %}
 
 {# ===== Portada ===== #}
+# ===== Portada ===== #}
 <section class="relative isolate flex min-h-screen items-center overflow-hidden pt-20 text-white">
-  <img src="{% static 'img/portada.jpg' %}" alt="" class="absolute inset-0 -z-20 h-full w-full object-cover">
+  <img src="{% static 'img/portada.jpg' %}" alt="" class="portada-dia absolute inset-0 -z-20 h-full w-full object-cover">
+  <img src="{% static 'img/portada-noche.jpg' %}" alt="" loading="lazy" class="portada-noche absolute inset-0 -z-20 hidden h-full w-full object-cover object-[50%_65%]">
   <div class="absolute inset-0 -z-10 bg-gradient-to-r from-bosque-950/80 via-bosque-950/40 to-transparent"></div>
 
   <div class="mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-16 lg:grid-cols-2 lg:px-8">
     <div>
       <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-beige-200">{% translate "Hospedaje rural · Pirque, Chile" %}</p>
-      <h1 class="mt-6 font-display text-6xl font-light leading-[0.95] sm:text-7xl lg:text-8xl">{% translate "Donde el tiempo vuelve a ser tuyo." %}</h1>
+      <h1 class="mt-6 font-display text-6xl font-light leading-[0.95] text-white sm:text-7xl lg:text-8xl">{% translate "Donde el tiempo vuelve a ser tuyo." %}</h1>
       <p class="mt-8 max-w-md font-display text-xl text-beige-100/90">{% translate "Un retiro de descanso y naturaleza en el corazón de Pirque. Para quienes buscan silencio, comodidad y reconexión." %}</p>
       <div class="mt-10 flex flex-wrap items-center gap-6">
         <a href="#reservar" class="inline-flex items-center gap-3 rounded-full bg-beige-100 px-7 py-4 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-bosque-950 transition hover:bg-white">
@@ -61,6 +64,9 @@
     <h2 class="mt-4 font-display text-4xl font-light text-bosque-800 md:text-6xl">{% translate "Quiénes somos" %}</h2>
     <p class="mt-6 leading-relaxed text-tinta/80">{% translate "Somos un hospedaje rural íntimo pensado para el descanso real. Sin televisor en las habitaciones, con Wi-Fi, rodeados de naturaleza y a solo 15 minutos del centro de Pirque." %}</p>
     <p class="mt-6 leading-relaxed text-tinta/80">{% translate "Preferimos grupos grandes, para garantizar una experiencia tranquila y personalizada. Nos adaptamos a lo que tú y tu grupo necesitan." %}</p>
+    <a href="{% url 'reservas:galeria' %}" class="mt-8 inline-flex items-center gap-3 rounded-full bg-bosque-800 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">
+      {% translate "Ver galería" %} <span aria-hidden="true">→</span>
+    </a>
   </div>
 </section>
 

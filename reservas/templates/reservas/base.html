@@ -1,4 +1,5 @@
 {% load static i18n %}{% get_current_language as LANGUAGE_CODE %}<!DOCTYPE html>
+
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
   <meta charset="utf-8">
@@ -6,18 +7,20 @@
   <title>{% block titulo %}Hospedaje Rural Pirque{% endblock %}</title>
   <meta name="description" content="{% translate 'Hospedaje rural en Pirque, Chile. Una casa para descansar, compartir y volver a la naturaleza al pie de la cordillera.' %}">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <script src="{% static 'js/tema.js' %}"></script>
 </head>
-<body class="bg-beige-100 font-sans text-tinta antialiased">
+<body class="bg-beige-100 font-sans text-tinta antialiased" style="display:flex;flex-direction:column;min-height:100vh">
   <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-beige-100 focus:px-4 focus:py-2">{% translate "Saltar al contenido" %}</a>
 
   {% include "reservas/_cabecera.html" %}
 
-  <main id="contenido">
+  <main id="contenido" style="flex:1 0 auto">
     {% block contenido %}{% endblock %}
   </main>
 
   {% include "reservas/_pie.html" %}
   <script src="{% static 'js/htmx.min.js' %}" defer></script>
   <script src="{% static 'js/sitio.js' %}" defer></script>
+  <script src="{% static 'js/animaciones.js' %}" defer></script>
 </body>
 </html>

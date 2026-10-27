@@ -74,4 +74,56 @@
       if (resumen) resumen.focus();
     });
   });
+
+  document.addEventListener("click", function (ev) {
+  var enlace = ev.target.closest("[data-ir-arriba]");
+  if (!enlace) return;
+  if (window.location.pathname === enlace.pathname) {
+    ev.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    history.replaceState(null, "", enlace.pathname);
+  }
+  });
+
+    // ---- Menú: marca la sección que se está viendo ----
+  (function () {
+    const enlaces = [];
+    document.querySelectorAll("header nav a[href]").forEach(function (a) {
+      const url = new URL(a.href, window.location.href);
+      if (url.pathname !== window.location.pathname) return;
+      const id = url.hash
+        ? url.hash.slice(1)
+        : (a.hasAttribute("data-ir-arriba") ? "inicio" : "");
+      if (id) enlaces.push({ a: a, id: id });
+    });
+
+    const secciones = document.querySelectorAll("section[id]");
+    if (!enlaces.length || !secciones.length || !("IntersectionObserver" in window)) return;
+
+    function marcar(idActivo) {
+      enlaces.forEach(function (e) {
+        if (e.id === idActivo) e.a.setAttribute("aria-current", "true");
+        else e.a.removeAttribute("aria-current");
+      });
+      // "Nosotros" se marca cuando se ve alguna de sus secciones
+      document.querySelectorAll("#menu-escritorio details").forEach(function (d) {
+        d.toggleAttribute("data-activo", !!d.querySelector('a[aria-current="true"]'));
+      });
+    }
+
+    const observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) marcar(entrada.target.id);
+      });
+    }, { rootMargin: "-35% 0px -60% 0px" });
+
+    secciones.forEach(function (seccion) { observador.observe(seccion); });
+
+    // En la portada, "La casa" queda marcada
+    function revisarInicio() {
+      if (window.scrollY < 120) marcar("inicio");
+    }
+    window.addEventListener("scroll", revisarInicio, { passive: true });
+    revisarInicio();
+  })();
 })();

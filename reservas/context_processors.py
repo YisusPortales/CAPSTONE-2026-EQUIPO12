@@ -17,3 +17,21 @@ def sitio(request):
             "email_contacto": os.environ.get("EMAIL_CONTACTO", "correo@ejemplo.cl"),
         }
     }
+
+def contador_admin(request):
+    """Cantidad de solicitudes pendientes, solo dentro del admin."""
+    user = getattr(request, "user", None)
+    if (
+        request.path.startswith("/admin/")
+        and user is not None
+        and user.is_authenticated
+        and user.is_staff
+    ):
+        from .models import SolicitudReserva
+
+        return {
+            "solicitudes_pendientes": SolicitudReserva.objects.filter(
+                estado=SolicitudReserva.Estado.PENDIENTE
+            ).count()
+        }
+    return {}

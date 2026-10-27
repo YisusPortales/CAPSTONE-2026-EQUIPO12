@@ -1,0 +1,78 @@
+{% extends "reservas/base.html" %}
+{% load i18n static %}
+{% block titulo %}Hospedaje Rural Pirque · {% translate "Galería" %}{% endblock %}
+
+{% block contenido %}
+<section class="bg-bosque-900 pb-14 pt-36 text-center text-beige-100">
+  <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Galería" %}</p>
+  <h1 class="mt-3 font-display text-4xl font-light sm:text-5xl">{% translate "Conoce la casa y su entorno." %}</h1>
+</section>
+
+<section class="bg-beige-100 px-4 py-14 sm:px-8">
+  <div class="mx-auto max-w-6xl">
+    {% if fotos or videos %}
+      <div class="mb-10 flex flex-wrap justify-center gap-3" role="group" aria-label="{% translate 'Filtrar la galería' %}">
+        <button type="button" data-filtro="todas" aria-pressed="true"
+                class="rounded-full border border-bosque-800 px-5 py-2 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-bosque-800 transition hover:bg-bosque-800 hover:text-white aria-pressed:bg-bosque-800 aria-pressed:text-white">{% translate "Todas" %}</button>
+        {% for valor, nombre in categorias %}
+          <button type="button" data-filtro="{{ valor }}" aria-pressed="false"
+                  class="rounded-full border border-bosque-800 px-5 py-2 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-bosque-800 transition hover:bg-bosque-800 hover:text-white aria-pressed:bg-bosque-800 aria-pressed:text-white">{{ nombre }}</button>
+        {% endfor %}
+        {% if videos %}
+          <button type="button" data-filtro="videos" aria-pressed="false"
+                  class="rounded-full border border-bosque-800 px-5 py-2 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-bosque-800 transition hover:bg-bosque-800 hover:text-white aria-pressed:bg-bosque-800 aria-pressed:text-white">{% translate "Videos" %}</button>
+        {% endif %}
+      </div>
+
+      <div class="columns-1 gap-4 sm:columns-2 lg:columns-3">
+        {% for foto in fotos %}
+          <button type="button" data-item data-categoria="{{ foto.categoria }}"
+                  class="mb-4 block w-full break-inside-avoid overflow-hidden rounded-lg"
+                  data-foto="{{ foto.imagen.url }}" data-alt="{{ foto.descripcion }}"
+                  aria-label="{% translate 'Ampliar foto' %}">
+            <img src="{{ foto.imagen.url }}" alt="{{ foto.descripcion }}" loading="lazy"
+                 class="w-full transition duration-500 hover:scale-105">
+          </button>
+        {% endfor %}
+
+        {% for video in videos %}
+          <div data-item data-categoria="videos" class="mb-4 block break-inside-avoid overflow-hidden rounded-lg bg-bosque-950 text-beige-100">
+            {% if video.archivo %}
+              <video controls preload="none" playsinline class="w-full"{% if video.portada %} poster="{{ video.portada.url }}"{% endif %}>
+                <source src="{{ video.archivo.url }}">
+              </video>
+            {% else %}
+              <button type="button" data-embed="{{ video.embed_url }}" data-titulo="{{ video.titulo }}"
+                      data-marco="{% if video.es_vertical %}aspect-[9/14]{% else %}aspect-video{% endif %}"
+                      aria-label="{% translate 'Reproducir video' %}"
+                      class="relative flex w-full items-center justify-center {% if video.es_vertical %}aspect-[9/14]{% else %}aspect-video{% endif %}">
+                {% if video.portada %}<img src="{{ video.portada.url }}" alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover">{% endif %}
+                <span class="relative flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-2xl text-bosque-900" aria-hidden="true">▶</span>
+              </button>
+              <a href="{{ video.enlace }}" target="_blank" rel="noopener noreferrer"
+                 class="block px-4 py-2 text-[0.65rem] uppercase tracking-[0.15em] text-beige-100/70 hover:text-white">{% translate "Ver en el sitio original" %} →</a>
+            {% endif %}
+            {% if video.titulo %}<p class="px-4 pb-3 pt-1 font-display text-lg">{{ video.titulo }}</p>{% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="py-16 text-center text-bosque-900/70">{% translate "Pronto compartiremos fotos de la casa." %}</p>
+    {% endif %}
+
+    <div class="mt-10 text-center">
+      <a href="{% url 'reservas:solicitar' %}" class="inline-flex items-center gap-2 rounded-full border border-bosque-900 px-6 py-3 text-xs uppercase tracking-[0.15em] text-bosque-900 transition hover:bg-bosque-900 hover:text-white">
+        <span aria-hidden="true">←</span> {% translate "Volver al inicio" %}
+      </a>
+    </div>
+  </div>
+</section>
+
+<dialog id="visor" class="m-auto max-h-[92vh] max-w-[92vw] bg-transparent p-0 backdrop:bg-black/80">
+  <img alt="" class="max-h-[92vh] max-w-[92vw] rounded-lg object-contain">
+  <button type="button" data-cerrar aria-label="{% translate 'Cerrar' %}"
+          class="absolute right-3 top-3 rounded-full bg-black/60 px-3 py-1 text-white">✕</button>
+</dialog>
+
+<script src="{% static 'js/galeria.js' %}" defer></script>
+{% endblock %}

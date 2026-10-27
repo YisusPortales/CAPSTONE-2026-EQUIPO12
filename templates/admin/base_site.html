@@ -1,6 +1,90 @@
 {% extends "admin/base_site.html" %}
-{% load static %}
+{% load static i18n panel_admin %}
+
 {% block extrastyle %}
   {{ block.super }}
   <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <script src="{% static 'js/admin-tema.js' %}"></script>
+  <script src="{% static 'js/admin-acciones.js' %}" defer></script>
+{% endblock %}
+
+{% block branding %}
+  <a class="marca" href="{% url 'admin:index' %}">
+    <span class="marca-icono" aria-hidden="true">HRP</span>
+    <span class="marca-texto">
+      <strong>Hospedaje Rural Pirque</strong>
+      <small>Panel de administración</small>
+    </span>
+  </a>
+{% endblock %}
+
+{% block usertools %}
+  {% if has_permission %}
+  <div id="user-tools">
+    <div class="usuario">
+      <span class="avatar" aria-hidden="true">{{ user.get_username|slice:":2"|upper }}</span>
+      <span class="usuario-datos">
+        <strong>{% firstof user.get_short_name user.get_username %}</strong>
+        <small>{% if user.is_superuser %}Administrador{% else %}Personal{% endif %}</small>
+      </span>
+    </div>
+    <div class="usuario-acciones">
+      {% if site_url %}<a href="{{ site_url }}">{% translate "View site" %}</a>{% endif %}
+      {% if user.has_usable_password %}<a href="{% url 'admin:password_change' %}">{% translate "Change password" %}</a>{% endif %}
+      <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+        {% csrf_token %}
+        <button type="submit">{% translate "Log out" %}</button>
+      </form>
+      {% include "admin/color_theme_toggle.html" %}
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}
+
+{% block nav-global %}
+  {% if has_permission %}
+    {% firstof opts.app_label app_label 'reservas' as app_activa %}
+    <nav class="tabs-apps" aria-label="Aplicaciones">
+      {% for app in available_apps %}
+        {% nombre_app app.app_label app.name as nombre %}
+        <a href="{{ app.app_url }}" class="{% if app.app_label == app_activa %}activa{% endif %}">{{ nombre }}</a>
+      {% endfor %}
+    </nav>
+    <nav class="tabs-modelos" aria-label="Secciones">
+      {% for app in available_apps %}{% if app.app_label == app_activa %}
+        {% for m in app.models %}{% if m.admin_url %}
+          <a href="{{ m.admin_url }}" class="{% if m.object_name|lower == opts.model_name %}activa{% endif %}">
+            {{ m.name }}
+            {% if m.object_name == 'SolicitudReserva' and solicitudes_pendientes %}
+              <span class="insignia">{{ solicitudes_pendientes }}</span>
+            {% endif %}
+          </a>
+        {% endif %}{% endfor %}
+      {% endif %}{% endfor %}
+    </nav>
+  {% endif %}
+{% endblock %}
+
+{% block nav-sidebar %}{% endblock %}
+
+{% block content_title %}
+  {% if cl %}
+    <h1>{{ cl.opts.verbose_name_plural|capfirst }}</h1>
+    <p class="subtitulo">Aquí puedes consultar y actualizar {{ cl.opts.verbose_name_plural }}.</p>
+  {% elif app_list %}
+    {% if app_list|length == 1 %}
+      {% nombre_app app_list.0.app_label app_list.0.name as nombre %}
+      <h1>{{ nombre }}</h1>
+      <p class="subtitulo">Elige qué quieres gestionar.</p>
+    {% else %}
+      <h1>Panel de administración</h1>
+      <p class="subtitulo">Resumen de todo lo que puedes gestionar.</p>
+    {% endif %}
+  {% elif title %}
+    <h1>{{ title }}</h1>
+  {% endif %}
 {% endblock %}

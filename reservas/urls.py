@@ -12,4 +12,5 @@ urlpatterns = [
     path("gestion/", views.gestion, name="gestion"),
     path("gestion/solicitudes/<int:pk>/<str:accion>/", views.gestion_solicitud, name="gestion_solicitud"),
     path("gestion/resenas/<int:pk>/<str:accion>/", views.gestion_resena, name="gestion_resena"),
+    path("galeria/", views.galeria, name="galeria"),
 ]

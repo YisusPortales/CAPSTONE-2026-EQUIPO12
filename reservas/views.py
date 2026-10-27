@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.views.decorators.http import require_http_methods, require_POST
 
 from .forms import ResenaForm, SolicitudReservaForm
-from .models import Resena, SolicitudReserva
+from .models import CategoriaFoto, Foto, Huesped, Resena, SolicitudReserva, Video
 
 
 @require_http_methods(["GET", "POST"])
@@ -165,3 +165,12 @@ def gestion_resena(request, pk, accion):
             "r": resena, "oob": True, **_resumen(),
         })
     raise Http404
+
+def galeria(request):
+    fotos = Foto.objects.filter(activa=True)
+    videos = Video.objects.filter(activo=True)
+    presentes = set(fotos.values_list("categoria", flat=True))
+    categorias = [(valor, nombre) for valor, nombre in CategoriaFoto.choices if valor in presentes]
+    return render(request, "reservas/galeria.html", {
+        "fotos": fotos, "videos": videos, "categorias": categorias,
+    })
