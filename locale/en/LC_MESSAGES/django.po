@@ -654,3 +654,27 @@ msgstr "View on the original site"
 #: (plantillas agregadas)
 msgid "Cambiar entre modo claro y oscuro"
 msgstr "Switch between light and dark mode"
+
+#: (plantillas agregadas)
+msgid "Escribir reseña"
+msgstr "Write a review"
+
+#: (plantillas agregadas)
+msgid "Nombre"
+msgstr "Name"
+
+#: (plantillas agregadas)
+msgid "País"
+msgstr "Country"
+
+#: (plantillas agregadas)
+msgid "Comentario"
+msgstr "Comment"
+
+#: (plantillas agregadas)
+msgid "Volver a las reseñas"
+msgstr "Back to reviews"
+
+#: (plantillas agregadas)
+msgid "¡Gracias! Tu reseña ya está publicada."
+msgstr "Thank you! Your review has been published."

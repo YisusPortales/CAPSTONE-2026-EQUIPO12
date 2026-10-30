@@ -367,3 +367,176 @@ input, select, textarea { border-radius: 8px; }
 #changelist button.fila-boton.ok:hover { background: #25813f; }
 #changelist button.fila-boton.peligro { color: #c0392b; border-color: rgb(192 57 43 / 0.4); }
 #changelist button.fila-boton.peligro:hover { background: #c0392b; border-color: #c0392b; color: #ffffff; }
+
+/* ===== Botones: añadir, guardar y archivos ===== */
+#container {
+  --boton: #2c4a3b;
+  --boton-hover: #233d31;
+  --peligro: #b42318;
+}
+html[data-theme="dark"] #container {
+  --boton: #3d7a5a;
+  --boton-hover: #4a8c69;
+  --peligro: #e5645a;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) #container {
+    --boton: #3d7a5a;
+    --boton-hover: #4a8c69;
+    --peligro: #e5645a;
+  }
+}
+
+/* "Añadir foto +" en la lista */
+#container .object-tools a.addlink,
+#container .object-tools a.addlink:link,
+#container .object-tools a.addlink:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.35rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--boton) none;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgb(44 74 59 / 0.3);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+#container .object-tools a.addlink::before {
+  content: "+";
+  font-size: 1.15rem;
+  line-height: 1;
+}
+#container .object-tools a.addlink:hover,
+#container .object-tools a.addlink:focus {
+  background: var(--boton-hover) none;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgb(44 74 59 / 0.35);
+}
+
+/* Barra de guardado: queda fija abajo mientras editas */
+#container .submit-row {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1.5rem 0 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgb(128 128 128 / 0.3);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--body-bg, #fff) 88%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 -6px 20px rgb(0 0 0 / 0.08);
+}
+
+/* Todos los botones de la barra: contorno */
+#container .submit-row input[type="submit"],
+#container .submit-row button,
+#container .submit-row a.button,
+#container .submit-row a.closelink,
+#container .submit-row a.deletelink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  margin: 0;
+  padding: 0.7rem 1.35rem;
+  border: 1.5px solid var(--boton);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--boton);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+#container .submit-row input[type="submit"]:hover,
+#container .submit-row button:hover,
+#container .submit-row a.button:hover,
+#container .submit-row a.closelink:hover {
+  background: var(--boton);
+  color: #fff;
+}
+
+/* "Guardar": botón principal, relleno */
+#container .submit-row input[type="submit"].default,
+#container .submit-row input[name="_save"] {
+  background: var(--boton);
+  color: #fff;
+  box-shadow: 0 4px 14px rgb(44 74 59 / 0.3);
+}
+#container .submit-row input[type="submit"].default:hover,
+#container .submit-row input[name="_save"]:hover {
+  background: var(--boton-hover);
+  border-color: var(--boton-hover);
+  transform: translateY(-1px);
+}
+
+/* "Eliminar": rojo, a la derecha */
+#container .submit-row .deletelink-box {
+  margin: 0 0 0 auto;
+  order: 99;
+}
+#container .submit-row a.deletelink,
+#container .submit-row a.deletelink:link,
+#container .submit-row a.deletelink:visited {
+  border-color: var(--peligro);
+  background: transparent;
+  color: var(--peligro);
+}
+#container .submit-row a.deletelink:hover {
+  background: var(--peligro);
+  color: #fff;
+}
+
+/* Foco visible para teclado */
+#container .submit-row input:focus-visible,
+#container .submit-row a:focus-visible,
+#container .object-tools a:focus-visible {
+  outline: 2px solid var(--boton);
+  outline-offset: 3px;
+}
+
+/* Botón "Seleccionar archivo" al subir fotos y videos */
+#container input[type="file"]::file-selector-button {
+  margin-right: 0.9rem;
+  padding: 0.55rem 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--boton);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#container input[type="file"]::file-selector-button:hover {
+  background: var(--boton-hover);
+}
+
+/* Celular: botones a lo ancho */
+@media (max-width: 640px) {
+  #container .submit-row > *,
+  #container .submit-row .deletelink-box,
+  #container .submit-row .deletelink-box a {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+  #container .submit-row .deletelink-box { margin: 0; }
+}

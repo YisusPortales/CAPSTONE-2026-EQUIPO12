@@ -17,6 +17,7 @@
     --color-amber-800: oklch(47.3% 0.137 46.201);
     --color-green-100: oklch(96.2% 0.044 156.743);
     --color-green-800: oklch(44.8% 0.119 151.328);
+    --color-green-900: oklch(39.3% 0.095 152.535);
     --color-emerald-300: oklch(84.5% 0.143 164.978);
     --color-black: #000;
     --color-white: #fff;
@@ -298,6 +299,9 @@
   }
   .left-6 {
     left: calc(var(--spacing) * 6);
+  }
+  .isolate {
+    isolation: isolate;
   }
   .-z-10 {
     z-index: calc(10 * -1);
@@ -865,6 +869,9 @@
   .object-cover {
     object-fit: cover;
   }
+  .object-\[50\%_65\%\] {
+    object-position: 50% 65%;
+  }
   .p-0 {
     padding: 0px;
   }
@@ -943,6 +950,9 @@
   .pt-20 {
     padding-top: calc(var(--spacing) * 20);
   }
+  .pt-32 {
+    padding-top: calc(var(--spacing) * 32);
+  }
   .pt-36 {
     padding-top: calc(var(--spacing) * 36);
   }
@@ -954,6 +964,9 @@
   }
   .pb-14 {
     padding-bottom: calc(var(--spacing) * 14);
+  }
+  .pb-16 {
+    padding-bottom: calc(var(--spacing) * 16);
   }
   .pb-24 {
     padding-bottom: calc(var(--spacing) * 24);
@@ -1134,6 +1147,9 @@
   }
   .text-green-800 {
     color: var(--color-green-800);
+  }
+  .text-green-900 {
+    color: var(--color-green-900);
   }
   .text-red-300 {
     color: var(--color-red-300);

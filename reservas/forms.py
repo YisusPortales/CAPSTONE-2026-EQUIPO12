@@ -169,6 +169,11 @@ class ResenaForm(forms.ModelForm):
     class Meta:
         model = Resena
         fields = ["nombre", "pais", "puntuacion", "comentario"]
+        labels = {
+            "nombre": _("Nombre"),
+            "pais": _("País"),
+            "comentario": _("Comentario"),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

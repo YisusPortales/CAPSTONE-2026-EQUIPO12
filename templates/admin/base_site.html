@@ -47,7 +47,7 @@
 
 {% block nav-global %}
   {% if has_permission %}
-    {% firstof opts.app_label app_label 'reservas' as app_activa %}
+    {% app_actual as app_activa %}
     <nav class="tabs-apps" aria-label="Aplicaciones">
       {% for app in available_apps %}
         {% nombre_app app.app_label app.name as nombre %}

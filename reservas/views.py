@@ -1,6 +1,6 @@
 from datetime import date
+from functools import wraps
 
-from django.contrib.admin.views.decorators import staff_member_required
 from django.db import transaction
 from django.db.models import Avg
 from django.http import Http404
@@ -12,6 +12,15 @@ from django.views.decorators.http import require_http_methods, require_POST
 from .forms import ResenaForm, SolicitudReservaForm
 from .models import CategoriaFoto, Foto, Huesped, Resena, SolicitudReserva, Video
 
+
+def solo_personal(vista):
+    """Solo el personal con sesión ve estas páginas; el resto recibe un 404, sin pistas."""
+    @wraps(vista)
+    def envuelta(request, *args, **kwargs):
+        if not (request.user.is_active and request.user.is_staff):
+            raise Http404
+        return vista(request, *args, **kwargs)
+    return envuelta
 
 @require_http_methods(["GET", "POST"])
 def solicitar_reserva(request):
@@ -51,23 +60,31 @@ def disponibilidad(request):
     return render(request, "reservas/_disponibilidad.html", {"estado": estado})
 
 
+@require_http_methods(["GET"])
 def resenas(request):
-    if request.method == "POST":
-        form = ResenaForm(request.POST)
-        if form.is_valid():
-            if not form.cleaned_data["sitio_web"]:  # si está lleno, es un bot
-                form.save()  # aprobada=False por defecto
-            return redirect(f"{reverse('reservas:resenas')}?enviada=1")
-    else:
-        form = ResenaForm()
-
+    """Solo lectura: reseñas aprobadas y promedio."""
     aprobadas = Resena.objects.filter(aprobada=True)
     return render(request, "reservas/resenas.html", {
-        "form": form,
         "resenas": aprobadas,
         "promedio": aprobadas.aggregate(p=Avg("puntuacion"))["p"],
         "enviada": request.GET.get("enviada") == "1",
     })
+
+
+@require_http_methods(["GET", "POST"])
+def resena_nueva(request):
+    """Formulario para escribir una reseña; al enviarla, vuelve a la lista."""
+    if request.method == "POST":
+        form = ResenaForm(request.POST)
+        if form.is_valid():
+            if not form.cleaned_data["sitio_web"]:  # si está lleno, es un bot
+                resena = form.save(commit=False)
+                resena.aprobada = True  # se publica de inmediato
+                resena.save()
+            return redirect(f"{reverse('reservas:resenas')}?enviada=1")
+    else:
+        form = ResenaForm()
+    return render(request, "reservas/formulario_resena.html", {"form": form})
 
 
 # ---------------------------------------------------------------------------
@@ -105,7 +122,7 @@ def _con_conflicto(solicitud):
     return solicitud
 
 
-@staff_member_required
+@solo_personal
 def gestion(request):
     estado = request.GET.get("estado", SolicitudReserva.Estado.PENDIENTE)
     solicitudes = SolicitudReserva.objects.select_related("huesped").prefetch_related(
@@ -126,7 +143,7 @@ def gestion(request):
     })
 
 
-@staff_member_required
+@solo_personal
 @require_POST
 def gestion_solicitud(request, pk, accion):
     if accion not in ACCIONES_SOLICITUD:
@@ -149,7 +166,7 @@ def gestion_solicitud(request, pk, accion):
     })
 
 
-@staff_member_required
+@solo_personal
 @require_POST
 def gestion_resena(request, pk, accion):
     resena = get_object_or_404(Resena, pk=pk)

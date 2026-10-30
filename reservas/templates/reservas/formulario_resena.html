@@ -1,0 +1,48 @@
+{% extends "reservas/base.html" %}
+{% load i18n %}
+{% block titulo %}Hospedaje Rural Pirque · {% translate "Deja tu reseña" %}{% endblock %}
+
+{% block contenido %}
+<section class="mx-auto max-w-2xl px-4 pb-16 pt-32">
+  <h1 class="text-3xl font-bold">{% translate "Deja tu reseña" %}</h1>
+
+  <form method="post" class="mt-6 grid gap-4">
+    {% csrf_token %}
+    {{ form.sitio_web }}
+
+    <div>
+      <p class="mb-1 font-medium">{% translate "Puntuación" %}</p>
+      <fieldset class="estrellas">
+        {% for radio in form.puntuacion %}
+          <input type="radio" name="{{ radio.data.name }}" value="{{ radio.data.value }}"
+                 id="{{ radio.id_for_label }}" required
+                 {% if radio.data.selected %}checked{% endif %}>
+          <label for="{{ radio.id_for_label }}" aria-label="{{ radio.data.value }} / 5"
+                 title="{{ radio.data.value }} / 5">★</label>
+        {% endfor %}
+      </fieldset>
+      {% for e in form.puntuacion.errors %}<p class="text-sm text-red-600">{{ e }}</p>{% endfor %}
+    </div>
+
+    {% for campo in form.visible_fields %}
+      {% if campo.name != "puntuacion" %}
+        <div>
+          <label for="{{ campo.id_for_label }}" class="mb-1 block font-medium">{{ campo.label }}</label>
+          {{ campo }}
+          {% for e in campo.errors %}<p class="text-sm text-red-600">{{ e }}</p>{% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <button type="submit" class="rounded-full bg-bosque-800 px-6 py-3 text-white">
+      {% translate "Enviar reseña" %}
+    </button>
+  </form>
+
+  <div class="mt-10">
+    <a href="{% url 'reservas:resenas' %}" class="inline-flex items-center gap-2 text-sm underline underline-offset-4">
+      <span aria-hidden="true">←</span> {% translate "Volver a las reseñas" %}
+    </a>
+  </div>
+</section>
+{% endblock %}

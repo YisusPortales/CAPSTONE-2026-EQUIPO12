@@ -1,12 +1,9 @@
 {% extends "reservas/base.html" %}
 {% load static i18n %}
 {% block titulo %}Hospedaje Rural Pirque · {% translate "Donde el tiempo vuelve a ser tuyo" %}{% endblock %}
-
-
 {% block contenido %}
 
 {# ===== Portada ===== #}
-# ===== Portada ===== #}
 <section class="relative isolate flex min-h-screen items-center overflow-hidden pt-20 text-white">
   <img src="{% static 'img/portada.jpg' %}" alt="" class="portada-dia absolute inset-0 -z-20 h-full w-full object-cover">
   <img src="{% static 'img/portada-noche.jpg' %}" alt="" loading="lazy" class="portada-noche absolute inset-0 -z-20 hidden h-full w-full object-cover object-[50%_65%]">
@@ -38,7 +35,7 @@
     </div>
   </div>
   </section>
-
+  
 {# ===== Inicio ===== #}
 <section id="inicio" class="scroll-mt-24 bg-beige-100 py-24">
   <div class="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-2 lg:px-8">
@@ -213,8 +210,8 @@
     <h2 class="mt-6 font-display text-5xl font-light leading-tight text-bosque-800 md:text-6xl">{% translate "Lo que queda después de la visita." %}</h2>
     <p class="mx-auto mt-6 max-w-lg text-tinta/70">{% translate "Lee las opiniones de quienes nos visitaron o comparte la tuya en Google." %}</p>
     <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="{% url 'reservas:resena_nueva' %}" class="rounded-full bg-bosque-800 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">{% translate "Escribir reseña" %}</a>
       <a href="{% url 'reservas:resenas' %}" class="rounded-full bg-bosque-800 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">{% translate "Leer reseñas" %}</a>
-      <a href="{{ sitio.dejar_resena_url }}" target="_blank" rel="noopener noreferrer" class="rounded-full bg-bosque-800 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">{% translate "Dejar una reseña" %}</a>
     </div>
   </div>
 </section>

@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 
 import os
 from pathlib import Path
-
 from dotenv import load_dotenv
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reservas',
+    'axes', 
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'axes.middleware.AxesMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -95,6 +97,10 @@ DATABASES = {
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+        {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {'min_length': 12},
+    },
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -144,11 +150,64 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
-MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-    },
-}
+# Correo: en desarrollo se imprime en la consola; en producción sale por SMTP.
+if DEBUG:
+    MAILERS = {
+        "default": {"BACKEND": "django.core.mail.backends.console.EmailBackend"},
+    }
+else:
+    MAILERS = {
+        "default": {
+            "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+            "OPTIONS": {
+                "host": os.environ.get("DJANGO_EMAIL_HOST", "localhost"),
+                "port": int(os.environ.get("DJANGO_EMAIL_PORT", "587")),
+                "use_tls": True,
+                "username": os.environ.get("DJANGO_EMAIL_USER", ""),
+                "password": os.environ.get("DJANGO_EMAIL_PASSWORD", ""),
+                "timeout": 10,
+            },
+        },
+    }
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# ---- Seguridad ----
+ADMIN_URL = os.environ.get("DJANGO_ADMIN_URL", "admin/")  # debe terminar en "/"
+
+# Sesión del admin: expira a las 8 horas.
+SESSION_COOKIE_AGE = 60 * 60 * 8
+
+# Dominios https desde los que se aceptan formularios (se completa al publicar el sitio).
+CSRF_TRUSTED_ORIGINS = [
+    o for o in os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",") if o
+]
+
+# Solo en producción (DEBUG apagado): todo por HTTPS y cookies seguras.
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    # Empieza bajo (1 hora). Súbelo cuando confirmes que todo funciona con HTTPS.
+    SECURE_HSTS_SECONDS = int(os.environ.get("DJANGO_HSTS_SECONDS", "3600"))
+    # Solo si el sitio está detrás de un proxy que envía X-Forwarded-Proto.
+    if os.environ.get("DJANGO_BEHIND_PROXY") == "1":
+        SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# ---- Protección del login (django-axes) ----
+AUTHENTICATION_BACKENDS = [
+    "axes.backends.AxesStandaloneBackend",       # debe ir primero
+    "django.contrib.auth.backends.ModelBackend",
+]
+AXES_FAILURE_LIMIT = 5                           # intentos fallidos permitidos
+AXES_COOLOFF_TIME = timedelta(hours=1)           # duración del bloqueo
+AXES_LOCKOUT_PARAMETERS = ["ip_address", "username"]  # bloquea por IP y también por usuario
+AXES_RESET_ON_SUCCESS = True                     # un login correcto borra los fallos
+AXES_LOCKOUT_TEMPLATE = "admin/bloqueado.html"
+
+# Detrás de un proxy, la IP real viene en X-Forwarded-For. Sin esto, todos los
+# visitantes parecerían tener la IP del proxy y un solo atacante bloquearía a todos.
+if os.environ.get("DJANGO_BEHIND_PROXY") == "1":
+    AXES_IPWARE_PROXY_COUNT = 1
+    AXES_IPWARE_META_PRECEDENCE_ORDER = ("HTTP_X_FORWARDED_FOR", "REMOTE_ADDR")

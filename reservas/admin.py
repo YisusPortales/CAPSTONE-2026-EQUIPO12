@@ -111,6 +111,16 @@ class ResenaAdmin(AccionesFilaMixin, admin.ModelAdmin):
         n = queryset.update(aprobada=False)
         self.message_user(request, f"{n} reseña(s) ocultada(s).", messages.SUCCESS)
 
+    def has_add_permission(self, request):
+        return False  # sin botón "Añadir reseña"
+
+    def has_change_permission(self, request, obj=None):
+        return False  # sin edición, solo lectura y eliminar
+
+    def get_actions(self, request):
+        acciones = super().get_actions(request)
+        return {k: v for k, v in acciones.items() if k == "delete_selected"}    
+
 
 # ---------------------------------------------------------- Solicitudes de reserva
 @admin.register(SolicitudReserva)
@@ -288,3 +298,36 @@ class VideoAdmin(admin.ModelAdmin):
         if obj.archivo:
             return "Archivo"
         return obj.proveedor.capitalize() or "—"
+
+# ---- Menú del admin: oculta Axes y separa Fotos/Videos en su propia pestaña ----
+MODELOS_GALERIA = {"Foto", "Video"}
+
+_get_app_list_original = admin.site.get_app_list
+
+
+def _get_app_list(request, app_label=None):
+    resultado = []
+    for app in _get_app_list_original(request, None):
+        if app["app_label"] == "axes":
+            continue
+        if app["app_label"] == "reservas":
+            galeria = [m for m in app["models"] if m["object_name"] in MODELOS_GALERIA]
+            resto = [m for m in app["models"] if m["object_name"] not in MODELOS_GALERIA]
+            resultado.append({**app, "models": resto})
+            if galeria:
+                primero = galeria[0]
+                resultado.append({
+                    **app,
+                    "name": "Galería",
+                    "app_label": "galeria",
+                    "app_url": primero.get("admin_url") or primero.get("add_url") or "",
+                    "models": galeria,
+                })
+            continue
+        resultado.append(app)
+    if app_label is not None:
+        resultado = [a for a in resultado if a["app_label"] == app_label]
+    return resultado
+
+
+admin.site.get_app_list = _get_app_list

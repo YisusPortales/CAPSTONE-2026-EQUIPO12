@@ -654,3 +654,27 @@ msgstr "Ver no site original"
 #: (plantillas agregadas)
 msgid "Cambiar entre modo claro y oscuro"
 msgstr "Alternar entre modo claro e escuro"
+
+#: (plantillas agregadas)
+msgid "Escribir reseña"
+msgstr "Escrever avaliação"
+
+#: (plantillas agregadas)
+msgid "Nombre"
+msgstr "Nome"
+
+#: (plantillas agregadas)
+msgid "País"
+msgstr "País"
+
+#: (plantillas agregadas)
+msgid "Comentario"
+msgstr "Comentário"
+
+#: (plantillas agregadas)
+msgid "Volver a las reseñas"
+msgstr "Voltar às avaliações"
+
+#: (plantillas agregadas)
+msgid "¡Gracias! Tu reseña ya está publicada."
+msgstr "Obrigado! Sua avaliação foi publicada."
