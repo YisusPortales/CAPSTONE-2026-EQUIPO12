@@ -18,7 +18,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Q
-
+from django_countries.fields import CountryField
 
 telefono_validator = RegexValidator(
     r"^\+?[0-9 ()-]{7,20}$", _("Ingresa un teléfono válido.")
@@ -168,7 +168,7 @@ class SolicitudReserva(models.Model):
 
 class Resena(models.Model):
     nombre = models.CharField(max_length=80)
-    pais = models.CharField(max_length=60, blank=True)
+    pais = CountryField(blank=True)
     puntuacion = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )

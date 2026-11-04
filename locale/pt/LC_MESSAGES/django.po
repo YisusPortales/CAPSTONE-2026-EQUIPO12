@@ -678,3 +678,31 @@ msgstr "Voltar às avaliações"
 #: (plantillas agregadas)
 msgid "¡Gracias! Tu reseña ya está publicada."
 msgstr "Obrigado! Sua avaliação foi publicada."
+
+#: (plantillas agregadas)
+msgid "Selecciona tu país"
+msgstr "Selecione seu país"
+
+#: (plantillas agregadas)
+msgid "Sin indicar"
+msgstr "Não informado"
+
+#: (plantillas agregadas)
+msgid "Buscar país"
+msgstr "Buscar país"
+
+#: (plantillas agregadas)
+msgid "Sin resultados"
+msgstr "Sem resultados"
+
+#: (plantillas agregadas)
+msgid "Detalle de precios vía WhatsApp"
+msgstr "Detalhes de preços via WhatsApp"
+
+#: (plantillas agregadas)
+msgid "Ya enviaste una reseña recientemente. Podrás enviar otra en %(minutos)s min."
+msgstr "Você enviou uma avaliação recentemente. Você poderá enviar outra em %(minutos)s min."
+
+#: (plantillas agregadas)
+msgid "Ya enviaste una reseña recientemente. Podrás enviar otra en:"
+msgstr "Você enviou uma avaliação recentemente. Você poderá enviar outra em:"

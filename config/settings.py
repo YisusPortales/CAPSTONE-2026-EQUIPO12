@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reservas',
-    'axes', 
+    'django_countries',
+    'axes',
 ]
 
 MIDDLEWARE = [
@@ -151,7 +152,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
 # Correo: en desarrollo se imprime en la consola; en producción sale por SMTP.
-if DEBUG:
+if DEBUG and os.environ.get("DJANGO_EMAIL_REAL") != "1":
     MAILERS = {
         "default": {"BACKEND": "django.core.mail.backends.console.EmailBackend"},
     }
@@ -169,6 +170,10 @@ else:
             },
         },
     }
+
+# Remitente por defecto y destinatario de los avisos al administrador.
+DEFAULT_FROM_EMAIL = os.environ.get("DJANGO_EMAIL_USER", "webmaster@localhost")
+NOTIFY_EMAIL = os.environ.get("DJANGO_NOTIFY_EMAIL", "")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

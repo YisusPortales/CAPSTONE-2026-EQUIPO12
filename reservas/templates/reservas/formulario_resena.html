@@ -1,5 +1,5 @@
 {% extends "reservas/base.html" %}
-{% load i18n %}
+{% load i18n static %}
 {% block titulo %}Hospedaje Rural Pirque · {% translate "Deja tu reseña" %}{% endblock %}
 
 {% block contenido %}
@@ -28,15 +28,29 @@
       {% if campo.name != "puntuacion" %}
         <div>
           <label for="{{ campo.id_for_label }}" class="mb-1 block font-medium">{{ campo.label }}</label>
-          {{ campo }}
+          {% if campo.name == "pais" %}
+            <div id="selector-pais" data-patron="{{ flag_patron }}"
+                 data-marcador="{% translate 'Selecciona tu país' %}"
+                 data-vacio="{% translate 'Sin indicar' %}"
+                 data-buscar="{% translate 'Buscar país' %}"
+                 data-sin-resultados="{% translate 'Sin resultados' %}">{{ campo }}</div>
+          {% else %}
+            {{ campo }}
+          {% endif %}
           {% for e in campo.errors %}<p class="text-sm text-red-600">{{ e }}</p>{% endfor %}
         </div>
       {% endif %}
     {% endfor %}
 
-    <button type="submit" class="rounded-full bg-bosque-800 px-6 py-3 text-white">
+    <button type="submit" id="enviar-resena" class="rounded-full bg-bosque-800 px-6 py-3 text-white">
       {% translate "Enviar reseña" %}
     </button>
+
+    {% if espera_segundos %}
+      <div id="espera-resena" data-segundos="{{ espera_segundos }}" role="status" class="aviso-espera rounded-lg p-4">        <p>{% translate "Ya enviaste una reseña recientemente. Podrás enviar otra en:" %}</p>
+        <p class="font-display" style="font-size:2rem;line-height:1.2"><span data-reloj>--:--</span></p>
+      </div>
+    {% endif %}
   </form>
 
   <div class="mt-10">
@@ -45,4 +59,20 @@
     </a>
   </div>
 </section>
+
+<style>
+  #selector-pais .pais-op.activa { background: rgba(255,255,255,.14); }
+  #selector-pais .pais-op[aria-selected="true"] { font-weight: 600; }
+
+  /* Modo claro: aviso oscuro */
+  .aviso-espera { background: #1c3329; color: #f1ece1; }
+  .aviso-espera [data-reloj] { color: #f3d58b; }
+
+  /* Modo oscuro: aviso claro */
+  html[data-tema="dark"] .aviso-espera { background: #fef3c7; color: #78350f; }
+  html[data-tema="dark"] .aviso-espera [data-reloj] { color: #78350f; }
+</style>
+
+<script src="{% static 'js/pais.js' %}" defer></script>
+<script src="{% static 'js/espera.js' %}" defer></script>
 {% endblock %}

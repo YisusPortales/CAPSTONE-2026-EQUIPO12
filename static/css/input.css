@@ -171,3 +171,11 @@ html[data-tema="dark"] .portada-noche { display: block; }
 #tema-toggle .icono-sol { display: none; }
 html[data-tema="dark"] #tema-toggle .icono-sol { display: block; }
 html[data-tema="dark"] #tema-toggle .icono-luna { display: none; }
+
+@keyframes idioma-entrada { from { opacity: 0; } to { opacity: 1; } }
+html.cambio-idioma body { animation: idioma-entrada 0.4s ease-out; }
+html.saliendo body { opacity: 0; transition: opacity 0.18s ease-in; }
+@media (prefers-reduced-motion: reduce) {
+  html.cambio-idioma body { animation: none; }
+  html.saliendo body { transition: none; }
+}

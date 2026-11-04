@@ -27,13 +27,12 @@
 
   <div class="mt-8 grid gap-4">
     {% for r in resenas %}
-            <article class="rounded-2xl border bg-white p-5 shadow-sm">
+      <article class="rounded-2xl border bg-white p-5 shadow-sm">
         <p class="font-semibold">{{ r.nombre }}</p>
         <p class="mt-1 text-lg estrellas-fijas" aria-label="{{ r.puntuacion }} / 5">{{ r.estrellas }}</p>
         <p class="mt-2">{{ r.comentario }}</p>
         <p class="mt-3 text-sm opacity-70">
-          {% if r.pais %}{{ r.pais }} · {% endif %}{{ r.creada|date:"M Y" }}
-        </p>
+          {% if r.pais %}<img src="{{ r.pais.flag }}" alt="" style="display:inline;height:0.85em;width:auto;vertical-align:-0.05em;margin-right:0.25rem">{{ r.pais.name }} · {% endif %}{{ r.creada|date:"M Y" }}        </p>
       </article>
     {% empty %}
       <p>{% translate "Aún no hay reseñas. ¡Sé el primero en dejar la tuya!" %}</p>

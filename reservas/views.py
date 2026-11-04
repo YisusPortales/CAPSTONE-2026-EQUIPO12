@@ -1,6 +1,9 @@
+import hashlib
+import math
+import time
+from django.core.cache import cache
 from datetime import date
 from functools import wraps
-
 from django.db import transaction
 from django.db.models import Avg
 from django.http import Http404
@@ -8,7 +11,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods, require_POST
-
+from django_countries.fields import Country
 from .forms import ResenaForm, SolicitudReservaForm
 from .models import CategoriaFoto, Foto, Huesped, Resena, SolicitudReserva, Video
 
@@ -70,13 +73,34 @@ def resenas(request):
         "enviada": request.GET.get("enviada") == "1",
     })
 
+ESPERA_RESENA = 5 * 60  # segundos entre reseñas de una misma conexión
+
+
+def _clave_resena(request):
+    """Huella de la IP del visitante (no se guarda la IP en claro)."""
+    ip = request.META.get("REMOTE_ADDR", "")
+    return "resena:" + hashlib.sha256(ip.encode()).hexdigest()[:24]
+
+def _segundos_restantes(request):
+    """Segundos que faltan para que esta conexión pueda enviar otra reseña."""
+    ultimo = cache.get(_clave_resena(request))
+    if ultimo is None:
+        return 0
+    return max(0, math.ceil(ultimo + ESPERA_RESENA - time.time()))
 
 @require_http_methods(["GET", "POST"])
 def resena_nueva(request):
     """Formulario para escribir una reseña; al enviarla, vuelve a la lista."""
+    contexto = {"flag_patron": Country("XX").flag}
+    faltan = _segundos_restantes(request)
     if request.method == "POST":
         form = ResenaForm(request.POST)
+        if faltan > 0:
+            # Envió otra reseña hace menos de 5 minutos.
+            contexto.update({"form": form, "espera_segundos": faltan})
+            return render(request, "reservas/formulario_resena.html", contexto, status=429)
         if form.is_valid():
+            cache.set(_clave_resena(request), time.time(), ESPERA_RESENA)
             if not form.cleaned_data["sitio_web"]:  # si está lleno, es un bot
                 resena = form.save(commit=False)
                 resena.aprobada = True  # se publica de inmediato
@@ -84,12 +108,10 @@ def resena_nueva(request):
             return redirect(f"{reverse('reservas:resenas')}?enviada=1")
     else:
         form = ResenaForm()
-    return render(request, "reservas/formulario_resena.html", {"form": form})
+    contexto.update({"form": form, "espera_segundos": faltan})
+    return render(request, "reservas/formulario_resena.html", contexto)
 
-
-# ---------------------------------------------------------------------------
 # Panel de gestión (solo personal autorizado)
-# ---------------------------------------------------------------------------
 
 ACCIONES_SOLICITUD = {
     "confirmar": SolicitudReserva.Estado.CONFIRMADA,
@@ -120,7 +142,6 @@ def _con_conflicto(solicitud):
         )
     )
     return solicitud
-
 
 @solo_personal
 def gestion(request):

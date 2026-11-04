@@ -678,3 +678,31 @@ msgstr "Back to reviews"
 #: (plantillas agregadas)
 msgid "¡Gracias! Tu reseña ya está publicada."
 msgstr "Thank you! Your review has been published."
+
+#: (plantillas agregadas)
+msgid "Selecciona tu país"
+msgstr "Select your country"
+
+#: (plantillas agregadas)
+msgid "Sin indicar"
+msgstr "Not specified"
+
+#: (plantillas agregadas)
+msgid "Buscar país"
+msgstr "Search country"
+
+#: (plantillas agregadas)
+msgid "Sin resultados"
+msgstr "No results"
+
+#: (plantillas agregadas)
+msgid "Detalle de precios vía WhatsApp"
+msgstr "Pricing details via WhatsApp"
+
+#: (plantillas agregadas)
+msgid "Ya enviaste una reseña recientemente. Podrás enviar otra en %(minutos)s min."
+msgstr "You recently sent a review. You can send another in %(minutos)s min."
+
+#: (plantillas agregadas)
+msgid "Ya enviaste una reseña recientemente. Podrás enviar otra en:"
+msgstr "You recently sent a review. You can send another in:"
