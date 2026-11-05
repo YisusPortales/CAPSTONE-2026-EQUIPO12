@@ -7,8 +7,8 @@
   {% static 'img/banderas/br.svg' as b1 %}{% static 'img/banderas/ptg.svg' as b2 %}
 {% endif %}
 {% if b1 %}
-<span style="display:inline-flex;align-items:center;gap:.25rem;flex-shrink:0">
-  <img src="{{ b1 }}" alt="" style="width:{{ ancho|default:'1.1rem' }};height:auto;border-radius:2px">
-  <img src="{{ b2 }}" alt="" style="width:{{ ancho|default:'1.1rem' }};height:auto;border-radius:2px">
+<span class="banderas banderas-{{ tam|default:'md' }}">
+  <img src="{{ b1 }}" alt="">
+  <img src="{{ b2 }}" alt="">
 </span>
 {% endif %}

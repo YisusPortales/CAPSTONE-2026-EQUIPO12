@@ -149,6 +149,7 @@ class SolicitudReservaForm(forms.ModelForm):
             )
             solicitud = super().save(commit=False)
             solicitud.huesped = huesped
+            solicitud.nombre_contacto = self.cleaned_data["nombre_completo"]
             solicitud.casa_completa = self.cleaned_data["alojamiento"] == self.ALOJAMIENTO_CASA
             solicitud.idioma = (translation.get_language() or "es")[:5]
             solicitud.save()

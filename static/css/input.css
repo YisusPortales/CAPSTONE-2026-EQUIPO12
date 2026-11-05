@@ -179,3 +179,7 @@ html.saliendo body { opacity: 0; transition: opacity 0.18s ease-in; }
   html.cambio-idioma body { animation: none; }
   html.saliendo body { transition: none; }
 }
+
+.banderas { display: inline-flex; align-items: center; gap: .25rem; flex-shrink: 0; }
+.banderas img { width: 1.1rem; height: auto; border-radius: 2px; }
+.banderas-sm img { width: 1rem; }

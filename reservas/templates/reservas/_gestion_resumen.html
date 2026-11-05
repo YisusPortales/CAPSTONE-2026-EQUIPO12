@@ -11,7 +11,7 @@
     <p class="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-terracota-600">Próximas llegadas</p>
     <ul class="mt-2 space-y-1 text-sm">
       {% for p in proximas %}
-        <li>{{ p.fecha_llegada|date:"d M" }} → {{ p.fecha_salida|date:"d M" }} · {{ p.huesped.nombre_completo }}</li>
+        <li>{{ p.fecha_llegada|date:"d M" }} → {{ p.fecha_salida|date:"d M" }} · {{ p.nombre_para_mostrar }}</li>
       {% empty %}
         <li class="opacity-70">Sin estadías confirmadas.</li>
       {% endfor %}

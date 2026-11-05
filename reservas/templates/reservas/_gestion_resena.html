@@ -7,7 +7,7 @@
     </span>
   </div>
   <p class="mt-2 text-sm">{{ r.comentario }}</p>
-  <p class="mt-2 text-xs opacity-60">{{ r.nombre }}{% if r.pais %} · {{ r.pais }}{% endif %} · {{ r.creada|date:"d M Y" }}</p>
+  <p class="mt-2 text-xs opacity-60">{{ r.nombre }}{% if r.pais %} · {{ r.pais.name }}{% endif %} · {{ r.creada|date:"d M Y" }}</p>
   <div class="mt-3 flex flex-wrap gap-2">
     {% if r.aprobada %}
       <button type="button" hx-post="{% url 'reservas:gestion_resena' r.pk 'ocultar' %}"

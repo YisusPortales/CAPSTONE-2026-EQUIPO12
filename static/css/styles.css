@@ -1712,6 +1712,20 @@ html.saliendo body {
     transition: none;
   }
 }
+.banderas {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  flex-shrink: 0;
+}
+.banderas img {
+  width: 1.1rem;
+  height: auto;
+  border-radius: 2px;
+}
+.banderas-sm img {
+  width: 1rem;
+}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;

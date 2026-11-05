@@ -8,6 +8,7 @@ urlpatterns = [
     path("", views.solicitar_reserva, name="solicitar"),
     path("gracias/", views.gracias, name="gracias"),
     path("disponibilidad/", views.disponibilidad, name="disponibilidad"),
+    path("disponibilidad/ocupadas/", views.fechas_ocupadas, name="ocupadas"),
     path("resenas/", views.resenas, name="resenas"),
     path("resenas/nueva/", views.resena_nueva, name="resena_nueva"),
     path("gestion/", views.gestion, name="gestion"),

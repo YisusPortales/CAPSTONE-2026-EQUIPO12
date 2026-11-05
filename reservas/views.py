@@ -12,8 +12,10 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods, require_POST
 from django_countries.fields import Country
+from django.http import Http404, HttpResponseNotAllowed, JsonResponse
 from .forms import ResenaForm, SolicitudReservaForm
 from .models import CategoriaFoto, Foto, Huesped, Resena, SolicitudReserva, Video
+
 
 
 def solo_personal(vista):
@@ -62,6 +64,14 @@ def disponibilidad(request):
         estado = "libre"
     return render(request, "reservas/_disponibilidad.html", {"estado": estado})
 
+@require_http_methods(["GET"])
+def fechas_ocupadas(request):
+    """Rangos de estadías confirmadas (sin nombres ni datos personales). Lo usa el calendario."""
+    hoy = timezone.localdate()
+    estadias = SolicitudReserva.objects.filter(
+        estado=SolicitudReserva.Estado.CONFIRMADA, fecha_salida__gt=hoy
+    ).values_list("fecha_llegada", "fecha_salida")
+    return JsonResponse({"ocupadas": [[a.isoformat(), s.isoformat()] for a, s in estadias]})
 
 @require_http_methods(["GET"])
 def resenas(request):

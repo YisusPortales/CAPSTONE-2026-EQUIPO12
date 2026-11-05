@@ -706,3 +706,73 @@ msgstr "You recently sent a review. You can send another in %(minutos)s min."
 #: (plantillas agregadas)
 msgid "Ya enviaste una reseña recientemente. Podrás enviar otra en:"
 msgstr "You recently sent a review. You can send another in:"
+
+#: (correos)
+#, python-format
+msgid "Recibimos tu solicitud de reserva"
+msgstr "We received your booking request"
+
+#, python-format
+msgid "Hola %(nombre)s,"
+msgstr "Hello %(nombre)s,"
+
+#, python-format
+msgid "Recibimos tu solicitud para el %(llegada)s al %(salida)s."
+msgstr "We received your request for %(llegada)s to %(salida)s."
+
+#, python-format
+msgid "Noches: %(noches)s · Personas: %(personas)s"
+msgstr "Nights: %(noches)s · Guests: %(personas)s"
+
+msgid "Todavía no es una reserva confirmada: revisaremos la disponibilidad y te responderemos pronto."
+msgstr "This is not a confirmed booking yet: we will check availability and reply soon."
+
+msgid "Si necesitas cambiar algo, responde a este correo."
+msgstr "If you need to change anything, just reply to this email."
+
+msgid "Tu reserva fue confirmada"
+msgstr "Your booking is confirmed"
+
+#, python-format
+msgid "¡Buenas noticias! Tu solicitud para el %(llegada)s al %(salida)s fue confirmada."
+msgstr "Good news! Your request for %(llegada)s to %(salida)s has been confirmed."
+
+msgid "Te contactaremos para coordinar el abono y los detalles de tu llegada."
+msgstr "We will contact you to arrange the deposit and your arrival details."
+
+msgid "Sobre tu solicitud de reserva"
+msgstr "About your booking request"
+
+#, python-format
+msgid "Lamentablemente no podemos recibirte entre el %(llegada)s y el %(salida)s."
+msgstr "Unfortunately we cannot host you between %(llegada)s and %(salida)s."
+
+msgid "Si quieres, puedes enviar una nueva solicitud con otras fechas."
+msgstr "If you wish, you can send a new request with different dates."
+
+msgid "Elige tu fecha de llegada"
+msgstr "Choose your arrival date"
+
+msgid "Ahora elige tu fecha de salida"
+msgstr "Now choose your departure date"
+
+msgid "Elige tu llegada y tu salida en el calendario"
+msgstr "Choose your arrival and departure dates on the calendar"
+
+msgid "Noches"
+msgstr "Nights"
+
+msgid "Mes anterior"
+msgstr "Previous month"
+
+msgid "Mes siguiente"
+msgstr "Next month"
+
+msgid "Borrar fechas"
+msgstr "Clear dates"
+
+msgid "No disponible"
+msgstr "Not available"
+
+msgid "Lee las opiniones de quienes nos visitaron o comparte la tuya."
+msgstr "Read what our guests have said, or share your own."

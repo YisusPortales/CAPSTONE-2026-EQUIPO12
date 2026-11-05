@@ -1,7 +1,7 @@
 <article id="solicitud-{{ s.pk }}" class="rounded-2xl border bg-white p-5 shadow-sm">
   <div class="flex flex-wrap items-start justify-between gap-3">
     <div>
-      <h3 class="text-lg font-semibold text-bosque-800">{{ s.huesped.nombre_completo }}</h3>
+      <h3 class="text-lg font-semibold text-bosque-800">{{ s.nombre_para_mostrar }}</h3>
       <p class="text-sm opacity-70">
         <a href="mailto:{{ s.huesped.email }}" class="underline">{{ s.huesped.email }}</a>
         {% if s.huesped.telefono %} · {{ s.huesped.telefono }}{% endif %}
@@ -40,7 +40,7 @@
     {% if s.estado != 'confirmada' %}
       <button type="button" hx-post="{% url 'reservas:gestion_solicitud' s.pk 'confirmar' %}"
               hx-target="#solicitud-{{ s.pk }}" hx-swap="outerHTML"
-              hx-confirm="¿Confirmar la estadía de {{ s.huesped.nombre_completo }}?"
+              hx-confirm="¿Confirmar la estadía de {{ s.nombre_para_mostrar }}?"
               class="rounded-full bg-bosque-800 px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">Confirmar</button>
     {% endif %}
     {% if s.estado != 'rechazada' %}

@@ -130,13 +130,13 @@ class SolicitudReservaAdmin(AccionesFilaMixin, admin.ModelAdmin):
         "noches", "personas", "alojamiento", "estado_etiqueta", "responder",
     )
     list_filter = ("estado", "casa_completa", "idioma")
-    search_fields = ("huesped__nombre_completo", "huesped__email", "comentarios")
+    search_fields = ("nombre_contacto", "huesped__nombre_completo", "huesped__email", "comentarios")
     date_hierarchy = "fecha_llegada"
     actions = ["confirmar", "rechazar", "volver_a_pendiente"]
-    readonly_fields = ("creada_en", "actualizada_en")
+    readonly_fields = ("creada_en", "actualizada_en", "nombre_contacto", "noches")
     filter_horizontal = ("habitaciones",)
     fieldsets = (
-        ("Huésped", {"fields": ("huesped", "contactar_por_whatsapp", "idioma")}),
+        ("Huésped", {"fields": ("huesped", "contactar_por_whatsapp", "idioma", "nombre_contacto")}),
         ("Estadía", {"fields": ("fecha_llegada", "fecha_salida", "personas", "casa_completa", "habitaciones")}),
         ("Detalle", {"fields": ("comentarios",)}),
         ("Gestión", {"fields": ("estado", "creada_en", "actualizada_en")}),
@@ -146,9 +146,9 @@ class SolicitudReservaAdmin(AccionesFilaMixin, admin.ModelAdmin):
         return super().get_queryset(request).select_related("huesped").prefetch_related("habitaciones")
 
     # ----- Columnas -----
-    @admin.display(description="Huésped", ordering="huesped__nombre_completo")
+    @admin.display(description="Huésped", ordering="nombre_contacto")
     def huesped_nombre(self, obj):
-        return obj.huesped.nombre_completo
+        return obj.nombre_para_mostrar
 
     @admin.display(description="Contacto")
     def contacto(self, obj):
@@ -176,7 +176,7 @@ class SolicitudReservaAdmin(AccionesFilaMixin, admin.ModelAdmin):
     def responder(self, obj):
         if obj.estado != SolicitudReserva.Estado.PENDIENTE:
             return "—"
-        nombre = obj.huesped.nombre_completo
+        nombre = obj.nombre_para_mostrar
         return format_html(
             '<button type="submit" class="fila-boton ok" formmethod="post" formaction="{}" '
             'data-confirmar="¿Aceptar la solicitud de {}?">Aceptar</button>'
@@ -212,7 +212,7 @@ class SolicitudReservaAdmin(AccionesFilaMixin, admin.ModelAdmin):
 
         with transaction.atomic():
             s = get_object_or_404(SolicitudReserva.objects.select_related("huesped"), pk=pk)
-            nombre = s.huesped.nombre_completo
+            nombre = s.nombre_para_mostrar
             if (
                 nuevo_estado == SolicitudReserva.Estado.CONFIRMADA
                 and SolicitudReserva.hay_conflicto(s.fecha_llegada, s.fecha_salida, s.pk)
@@ -243,7 +243,7 @@ class SolicitudReservaAdmin(AccionesFilaMixin, admin.ModelAdmin):
             if SolicitudReserva.hay_conflicto(s.fecha_llegada, s.fecha_salida, s.pk):
                 self.message_user(
                     request,
-                    f"No se pudo confirmar a {s.huesped.nombre_completo} "
+                    f"No se pudo confirmar a {s.nombre_para_mostrar} "
                     f"({s.fecha_llegada:%d/%m} al {s.fecha_salida:%d/%m}): ya hay una estadía confirmada.",
                     messages.WARNING,
                 )
@@ -256,7 +256,11 @@ class SolicitudReservaAdmin(AccionesFilaMixin, admin.ModelAdmin):
 
     @admin.action(description="Rechazar solicitudes seleccionadas")
     def rechazar(self, request, queryset):
-        n = queryset.update(estado=SolicitudReserva.Estado.RECHAZADA, actualizada_en=timezone.now())
+        n = 0
+        for s in queryset.exclude(estado=SolicitudReserva.Estado.RECHAZADA):
+            s.estado = SolicitudReserva.Estado.RECHAZADA
+            s.save(update_fields=["estado", "actualizada_en"])
+            n += 1
         self.message_user(request, f"{n} solicitud(es) rechazada(s).", messages.SUCCESS)
 
     @admin.action(description="Volver a pendiente")

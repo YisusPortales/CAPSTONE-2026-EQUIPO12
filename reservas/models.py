@@ -91,6 +91,7 @@ class SolicitudReserva(models.Model):
         RECHAZADA = "rechazada", _("Rechazada")
 
     huesped = models.ForeignKey(Huesped, on_delete=models.PROTECT, related_name="solicitudes")
+    nombre_contacto = models.CharField(max_length=120, blank=True)
     fecha_llegada = models.DateField()
     fecha_salida = models.DateField()
     personas = models.PositiveSmallIntegerField(
@@ -126,6 +127,10 @@ class SolicitudReserva(models.Model):
         if self.fecha_llegada and self.fecha_salida:
             return (self.fecha_salida - self.fecha_llegada).days
         return None
+
+    @property
+    def nombre_para_mostrar(self):
+        return self.nombre_contacto or self.huesped.nombre_completo
 
     @classmethod
     def hay_conflicto(cls, llegada, salida, excluir_pk=None):

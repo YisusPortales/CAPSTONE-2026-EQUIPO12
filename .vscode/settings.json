@@ -1,3 +1,6 @@
 {
-    "workbench.colorTheme": "Abyss"
+    "workbench.colorTheme": "Abyss",
+    "css.lint.unknownAtRules": "ignore",
+    "[html]": { "editor.formatOnSave": false },
+    "[django-html]": { "editor.formatOnSave": false }
 }
