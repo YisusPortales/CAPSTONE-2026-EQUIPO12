@@ -776,3 +776,66 @@ msgstr "Indisponível"
 
 msgid "Lee las opiniones de quienes nos visitaron o comparte la tuya."
 msgstr "Leia as opiniões de quem nos visitou ou compartilhe a sua."
+
+msgid "Hola, quisiera consultar por una estadía en Hospedaje Rural Pirque."
+msgstr "Olá, gostaria de consultar sobre uma estadia no Hospedaje Rural Pirque."
+
+msgid "Escríbenos por WhatsApp"
+msgstr "Escreva-nos pelo WhatsApp"
+
+msgid "Interiores"
+msgstr "Interiores"
+
+msgid "Baño de luna"
+msgstr "Banho de lua"
+
+msgid "Ver anterior"
+msgstr "Anterior"
+
+msgid "Ver siguiente"
+msgstr "Seguinte"
+
+msgid "Capacitaciones, talleres y experiencias únicas"
+msgstr "Capacitações, workshops e experiências únicas"
+
+msgid "Inicio"
+msgstr "Início"
+
+msgid "Tour de las viñas"
+msgstr "Passeio pelas vinícolas"
+
+msgid "Un recorrido por el valle, con el hospedaje como punto de partida."
+msgstr "Um passeio pelo vale, com a hospedagem como ponto de partida."
+
+msgid "Pirque es tierra de viñas y de paisajes que se disfrutan sin apuro. Te invitamos a conocerlo acompañado por quienes lo viven cada día."
+msgstr "Pirque é terra de vinhedos e de paisagens para aproveitar sem pressa. Convidamos você a conhecê-la com quem a vive todos os dias."
+
+msgid "Consulta por las fechas, la duración y las viñas que incluye el recorrido; lo adaptamos a tu grupo."
+msgstr "Consulte datas, duração e as vinícolas incluídas no passeio; adaptamos ao seu grupo."
+
+msgid "Hola, quisiera consultar por el Tour de las viñas."
+msgstr "Olá, gostaria de consultar sobre o passeio pelas vinícolas."
+
+msgid "Experiencia"
+msgstr "Experiência"
+
+msgid "Consulta por tu proyecto."
+msgstr "Consulte sobre o seu projeto."
+
+msgid "Un espacio tranquilo para tu taller, jornada o actividad de equipo."
+msgstr "Um espaço tranquilo para a sua oficina, jornada ou atividade de equipe."
+
+msgid "Recibimos grupos, empresas e instituciones que buscan un lugar en plena naturaleza para reunirse, trabajar o compartir."
+msgstr "Recebemos grupos, empresas e instituições que buscam um lugar em plena natureza para se reunir, trabalhar ou compartilhar."
+
+msgid "Cuéntanos tu proyecto, cuántas personas son y qué necesitan, y lo conversamos para adaptar el espacio a tu actividad."
+msgstr "Conte-nos sobre o seu projeto, quantas pessoas são e o que precisam, e conversamos para adaptar o espaço à sua atividade."
+
+msgid "Cuéntanos tu proyecto"
+msgstr "Conte-nos sobre o seu projeto"
+
+msgid "Hola, quisiera consultar por el uso del espacio para un taller o jornada."
+msgstr "Olá, gostaria de consultar sobre o uso do espaço para uma oficina ou jornada."
+
+msgid "Talleres y experiencias únicas"
+msgstr "Workshops e experiências únicas"

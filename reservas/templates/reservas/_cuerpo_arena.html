@@ -1,0 +1,16 @@
+{% load i18n %}
+{% translate "Hola, quisiera consultar por el Baño de arena volcánica." as msg_wa %}
+<p class="font-display text-xl text-bosque-800">{% translate "Una experiencia privada de conexión con la tierra y bienestar." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "En Hospedaje Rural Pirque queremos invitarte a vivir una experiencia diferente, creada para regalarte una pausa, desconectarte de la rutina y dedicarte un momento solo para ti." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "Nuestro Baño de Arena Volcánica es una experiencia exclusiva y privada, inspirada en la fuerza y la energía de la naturaleza. A través del contacto con la arena volcánica, te invitamos a disfrutar de un ritual de relajación, conexión y bienestar, en un espacio preparado para que puedas soltar las tensiones del día, descansar y reconectar con tu cuerpo." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "Rodeado de naturaleza, en un ambiente cálido e íntimo, cada sesión se convierte en un momento personal, lejos del ruido y las preocupaciones cotidianas. El calor de la arena volcánica entrega una agradable sensación de relajación." %}</p>
+<p class="text-[0.7rem] font-medium uppercase tracking-[0.18em] text-terracota-600">{% translate "Qué hace especial esta experiencia" %}</p>
+<ul class="space-y-2 text-tinta/80">
+  <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-terracota-600"></span><span>{% translate "Es un servicio exclusivo y completamente privado." %}</span></li>
+  <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-terracota-600"></span><span>{% translate "Un entorno natural preparado para tu descanso." %}</span></li>
+  <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-terracota-600"></span><span>{% translate "Una experiencia diferente, inspirada en la tierra y sus elementos." %}</span></li>
+  <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-terracota-600"></span><span>{% translate "Un momento para regalarte tranquilidad, conexión y bienestar." %}</span></li>
+</ul>
+<p class="border-l-2 border-terracota-600 pl-4 font-display text-lg text-bosque-800">{% translate "Regálate una pausa. Siente la tierra. Reconecta contigo." %}</p>
+<p class="text-sm text-tinta/60">{% translate "Atención con reserva previa y cupos limitados." %}</p>
+{% if sitio.whatsapp_numero %}<a href="https://wa.me/{{ sitio.whatsapp_numero }}?text={{ msg_wa|urlencode }}" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center bg-bosque-800 px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white transition hover:opacity-90">{% translate "Reservar por WhatsApp" %}</a>{% endif %}

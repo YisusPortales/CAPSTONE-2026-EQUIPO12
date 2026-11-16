@@ -269,9 +269,15 @@ def datos_de_enlace(enlace):
 
 class CategoriaFoto(models.TextChoices):
     EXTERIORES = "exteriores", _("Exteriores")
+    INTERIORES = "interiores", _("Interiores")
     FAMILIAS = "familias", _("Familias")
     COMIDAS = "comidas", _("Comidas y bebidas")
     HABITACIONES = "habitaciones", _("Habitaciones")
+    LUNA = "luna", _("Baño de luna")
+    ARENA = "arena", _("Baño de arena volcánica")
+
+# Estas categorías solo se ven dentro de los paneles de Experiencias, no en la Galería.
+CATEGORIAS_EXPERIENCIA = (CategoriaFoto.LUNA, CategoriaFoto.ARENA)
 
 
 class Foto(models.Model):
@@ -318,6 +324,9 @@ class Video(models.Model):
         validators=[FileExtensionValidator(["jpg", "jpeg", "png", "webp"]), validar_peso],
         help_text=_("Opcional. Imagen que se ve antes de reproducir."),
     )
+    categoria = models.CharField(
+        _("categoría"), max_length=20, choices=CategoriaFoto.choices, blank=True,
+    )    
     orden = models.PositiveSmallIntegerField(_("orden"), default=0)
     activo = models.BooleanField(_("visible"), default=True)
     creado = models.DateTimeField(auto_now_add=True)

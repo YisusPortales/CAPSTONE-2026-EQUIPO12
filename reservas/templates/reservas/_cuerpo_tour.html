@@ -1,0 +1,6 @@
+{% load i18n %}
+{% translate "Hola, quisiera consultar por el Tour de las viñas." as msg_wa %}
+<p class="font-display text-xl text-bosque-800">{% translate "Un recorrido por el valle, con el hospedaje como punto de partida." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "Pirque es tierra de viñas y de paisajes que se disfrutan sin apuro. Te invitamos a conocerlo acompañado por quienes lo viven cada día." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "Consulta por las fechas, la duración y las viñas que incluye el recorrido; lo adaptamos a tu grupo." %}</p>
+{% if sitio.whatsapp_numero %}<a href="https://wa.me/{{ sitio.whatsapp_numero }}?text={{ msg_wa|urlencode }}" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center bg-bosque-800 px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white transition hover:opacity-90">{% translate "Reservar por WhatsApp" %}</a>{% endif %}

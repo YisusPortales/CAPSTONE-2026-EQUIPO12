@@ -1,0 +1,6 @@
+{% load i18n %}
+{% translate "Hola, quisiera consultar por el uso del espacio para un taller o jornada." as msg_wa %}
+<p class="font-display text-xl text-bosque-800">{% translate "Un espacio tranquilo para tu taller, jornada o actividad de equipo." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "Recibimos grupos, empresas e instituciones que buscan un lugar en plena naturaleza para reunirse, trabajar o compartir." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "Cuéntanos tu proyecto, cuántas personas son y qué necesitan, y lo conversamos para adaptar el espacio a tu actividad." %}</p>
+{% if sitio.whatsapp_numero %}<a href="https://wa.me/{{ sitio.whatsapp_numero }}?text={{ msg_wa|urlencode }}" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center bg-bosque-800 px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white transition hover:opacity-90">{% translate "Cuéntanos tu proyecto" %}</a>{% endif %}

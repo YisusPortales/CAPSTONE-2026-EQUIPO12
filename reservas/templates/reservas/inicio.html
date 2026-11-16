@@ -163,30 +163,29 @@
       <ul class="mt-10 divide-y divide-bosque-800/20 border-y border-bosque-800/20">
         <li><button type="button" data-panel="panel-piedra"
             class="flex w-full items-start justify-between gap-6 py-6 text-left transition hover:bg-bosque-800/5">
-            <span><span class="block font-display text-2xl text-bosque-800">{% translate "Piedra volcánica" %}</span><span class="mt-1 block text-sm text-tinta/70">{% translate "Masajes y cama de arena volcánica para una pausa profunda." %}</span></span><span class="text-xs text-terracota-600">01</span></button>
+            <span><span class="block font-display text-2xl text-bosque-800">{% translate "Baño de arena volcánica" %}</span><span class="mt-1 block text-sm text-tinta/70">{% translate "Una experiencia privada de conexión con la tierra y bienestar." %}</span></span></button>
         </li>
         <li><button type="button" data-panel="panel-banos"
             class="flex w-full items-start justify-between gap-6 py-6 text-left transition hover:bg-bosque-800/5">
             <span><span class="block font-display text-2xl text-bosque-800">{% translate "Baños de luna" %}</span><span
-                class="mt-1 block text-sm text-tinta/70">{% translate "Noches de verano bajo el cielo abierto de Pirque." %}</span></span><span class="text-xs text-terracota-600">02</span></button></li>
-        <li><button type="button" data-panel="panel-memoria"
+                class="mt-1 block text-sm text-tinta/70">{% translate "Una experiencia para conectar, renovar y dejar fluir." %}</span></span></button></li>
+        <li><button type="button" data-panel="panel-tour"
             class="flex w-full items-start justify-between gap-6 py-6 text-left transition hover:bg-bosque-800/5">
-            <span><span class="block font-display text-2xl text-bosque-800">{% translate "Memoria Picunche" %}</span><span class="mt-1 block text-sm text-tinta/70">{% translate "Historias del territorio para compartir, escuchar y aprender." %}</span></span><span
-              class="text-xs text-terracota-600">03</span></button></li>
-        <li class="flex items-center justify-between gap-6 bg-beige-200/60 px-4 py-5">
-          <span class="flex items-center gap-4"><span
-              class="bg-terracota-600 px-2 py-1 text-[0.6rem] font-medium uppercase tracking-wider text-white">{% translate "Próximamente" %}</span>
-            <span><span class="block font-display text-xl text-bosque-800">{% translate "Capacitaciones y talleres" %}</span><span class="block text-xs text-tinta/60">{% translate "Aún no habilitados" %}</span></span></span>
+            <span><span class="block font-display text-2xl text-bosque-800">{% translate "Tour de las viñas" %}</span><span class="mt-1 block text-sm text-tinta/70">{% translate "Un recorrido por el valle, con el hospedaje como punto de partida." %}</span></span></button></li>
+        <li><button type="button" data-panel="panel-talleres"
+            class="flex w-full items-start justify-between gap-6 py-6 text-left transition hover:bg-bosque-800/5">
+            <span><span class="block font-display text-2xl text-bosque-800">{% translate "Capacitaciones, talleres y experiencias únicas" %}</span><span class="mt-1 block text-sm text-tinta/70">{% translate "Consulta por tu proyecto." %}</span></span></button></li>
         </li>
       </ul>
     </div>
-    <div class="grid grid-rows-2 gap-1 lg:h-full">
-      <img src="{% static 'img/bano-de-luna1.jpg' %}" alt="{% translate 'Baños de luna' %}"
-        class="h-56 w-full object-cover lg:h-full" loading="lazy">
-      <img src="{% static 'img/piedra-volcanica1.jpg' %}" alt="{% translate 'Piedra volcánica' %}"
-        class="h-56 w-full object-cover lg:h-full" loading="lazy">
+    <div class="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-1 lg:grid-rows-2">
+      <div class="relative aspect-[4/3] overflow-hidden lg:aspect-[16/10]">
+        <img src="{% static 'img/Bano-de-luna.jpg' %}" alt="{% translate 'Baños de luna' %}" class="absolute inset-0 h-full w-full object-cover" loading="lazy">
+      </div>
+      <div class="relative aspect-[4/3] overflow-hidden lg:aspect-[16/10]">
+        <img src="{% if arena_fotos %}{{ arena_fotos.0.imagen.url }}{% else %}{% static 'img/bano-arena.jpg' %}{% endif %}" alt="{% translate 'Baño de arena volcánica' %}" class="absolute inset-0 h-full w-full object-cover" loading="lazy">
+      </div>
     </div>
-
   </div>
 </section>
 
@@ -426,10 +425,11 @@
 {% translate "Descripción de ejemplo para esta experiencia." as txt_ejemplo %}
 {% include "reservas/_panel.html" with id="panel-suite" titulo=_("La Suite") imagen_1="img/suite1.jpg" imagen_2="img/bano1.jpg" detalle=txt_bano_privado texto=txt_ejemplo %}
 {% include "reservas/_panel.html" with id="panel-familiar-1" titulo=_("Habitación Familiar 1") imagen_1="img/habitaciondoble.jpg" imagen_2="img/bano2.jpg" detalle=txt_camarote texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-tour" titulo=_("Tour de las viñas") detalle=_("Experiencia") cuerpo="reservas/_cuerpo_tour.html" %}
+{% include "reservas/_panel.html" with id="panel-talleres" titulo=_("Capacitaciones, talleres y experiencias únicas") detalle=_("Experiencia") cuerpo="reservas/_cuerpo_talleres.html" %}
 {% include "reservas/_panel.html" with id="panel-familiar-2" titulo=_("Habitación Familiar 2") imagen_1="img/habitaciondoble.jpg" imagen_2="img/bano3.jpg" detalle=txt_camarote texto=txt_ejemplo %}
-{% include "reservas/_panel.html" with id="panel-piedra" titulo=_("Piedra volcánica") imagen_1="img/piedra-volcanica1.jpg" detalle=_("Bienestar") texto=txt_ejemplo %}
-{% include "reservas/_panel.html" with id="panel-banos" titulo=_("Baños de luna") imagen_1="img/bano-de-luna1.jpg" detalle=_("Bienestar") texto=txt_ejemplo %}
-{% include "reservas/_panel.html" with id="panel-memoria" titulo=_("Memoria Picunche") detalle=_("Territorio") texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-piedra" titulo=_("Baño de arena volcánica") detalle=_("Bienestar") fotos=arena_fotos videos=arena_videos cuerpo="reservas/_cuerpo_arena.html" %}
+{% include "reservas/_panel.html" with id="panel-banos" titulo=_("Baños de luna") detalle=_("Bienestar") fotos=luna_fotos videos=luna_videos cuerpo="reservas/_cuerpo_luna.html" %}
 {% include "reservas/_panel_certificados.html" %}
 
 {% endblock %}

@@ -14,7 +14,7 @@ from django.views.decorators.http import require_http_methods, require_POST
 from django_countries.fields import Country
 from django.http import Http404, HttpResponseNotAllowed, JsonResponse
 from .forms import ResenaForm, SolicitudReservaForm
-from .models import CategoriaFoto, Foto, Huesped, Resena, SolicitudReserva, Video
+from .models import CategoriaFoto, Foto, Huesped, Resena, SolicitudReserva, Video, CATEGORIAS_EXPERIENCIA
 
 
 
@@ -38,7 +38,14 @@ def solicitar_reserva(request):
             return redirect("reservas:gracias")
     else:
         form = SolicitudReservaForm()
-    return render(request, "reservas/inicio.html", {"form": form})
+    contexto = {
+        "form": form,
+        "luna_fotos": Foto.objects.filter(activa=True, categoria=CategoriaFoto.LUNA),
+        "luna_videos": Video.objects.filter(activo=True, categoria=CategoriaFoto.LUNA),
+        "arena_fotos": Foto.objects.filter(activa=True, categoria=CategoriaFoto.ARENA),
+        "arena_videos": Video.objects.filter(activo=True, categoria=CategoriaFoto.ARENA),
+    }
+    return render(request, "reservas/inicio.html", contexto)
 
 
 @require_http_methods(["GET"])
@@ -215,8 +222,8 @@ def gestion_resena(request, pk, accion):
     raise Http404
 
 def galeria(request):
-    fotos = Foto.objects.filter(activa=True)
-    videos = Video.objects.filter(activo=True)
+    fotos = Foto.objects.filter(activa=True).exclude(categoria__in=CATEGORIAS_EXPERIENCIA)
+    videos = Video.objects.filter(activo=True).exclude(categoria__in=CATEGORIAS_EXPERIENCIA)
     presentes = set(fotos.values_list("categoria", flat=True))
     categorias = [(valor, nombre) for valor, nombre in CategoriaFoto.choices if valor in presentes]
     return render(request, "reservas/galeria.html", {

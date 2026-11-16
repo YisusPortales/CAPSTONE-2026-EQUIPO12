@@ -776,3 +776,66 @@ msgstr "Not available"
 
 msgid "Lee las opiniones de quienes nos visitaron o comparte la tuya."
 msgstr "Read what our guests have said, or share your own."
+
+msgid "Hola, quisiera consultar por una estadía en Hospedaje Rural Pirque."
+msgstr "Hello, I would like to ask about a stay at Hospedaje Rural Pirque."
+
+msgid "Escríbenos por WhatsApp"
+msgstr "Message us on WhatsApp"
+
+msgid "Interiores"
+msgstr "Interiors"
+
+msgid "Baño de luna"
+msgstr "Moon bath"
+
+msgid "Ver anterior"
+msgstr "Previous"
+
+msgid "Ver siguiente"
+msgstr "Next"
+
+msgid "Capacitaciones, talleres y experiencias únicas"
+msgstr "Training, workshops and unique experiences"
+
+msgid "Inicio"
+msgstr "Home"
+
+msgid "Tour de las viñas"
+msgstr "Vineyard tour"
+
+msgid "Un recorrido por el valle, con el hospedaje como punto de partida."
+msgstr "A journey through the valley, with the lodge as your starting point."
+
+msgid "Pirque es tierra de viñas y de paisajes que se disfrutan sin apuro. Te invitamos a conocerlo acompañado por quienes lo viven cada día."
+msgstr "Pirque is a land of vineyards and landscapes to be enjoyed without hurry. We invite you to discover it with those who live it every day."
+
+msgid "Consulta por las fechas, la duración y las viñas que incluye el recorrido; lo adaptamos a tu grupo."
+msgstr "Ask about dates, duration and the vineyards included in the tour; we adapt it to your group."
+
+msgid "Hola, quisiera consultar por el Tour de las viñas."
+msgstr "Hello, I would like to ask about the vineyard tour."
+
+msgid "Experiencia"
+msgstr "Experience"
+
+msgid "Consulta por tu proyecto."
+msgstr "Ask about your project."
+
+msgid "Un espacio tranquilo para tu taller, jornada o actividad de equipo."
+msgstr "A quiet space for your workshop, retreat or team activity."
+
+msgid "Recibimos grupos, empresas e instituciones que buscan un lugar en plena naturaleza para reunirse, trabajar o compartir."
+msgstr "We welcome groups, companies and institutions looking for a place in the heart of nature to meet, work or share."
+
+msgid "Cuéntanos tu proyecto, cuántas personas son y qué necesitan, y lo conversamos para adaptar el espacio a tu actividad."
+msgstr "Tell us about your project, how many people you are and what you need, and we will adapt the space to your activity."
+
+msgid "Cuéntanos tu proyecto"
+msgstr "Tell us about your project"
+
+msgid "Hola, quisiera consultar por el uso del espacio para un taller o jornada."
+msgstr "Hello, I would like to ask about using the space for a workshop or retreat."
+
+msgid "Talleres y experiencias únicas"
+msgstr "Workshops and unique experiences"

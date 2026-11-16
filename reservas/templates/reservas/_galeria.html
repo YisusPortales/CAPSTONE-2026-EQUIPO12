@@ -1,0 +1,21 @@
+{% load i18n %}
+{% if fotos or videos %}
+<div class="group relative" data-carrusel>
+  <div data-pista class="-mx-6 flex snap-x snap-mandatory items-center gap-3 overflow-x-auto px-6 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    {% for f in fotos %}<img src="{{ f.imagen.url }}" alt="{{ f.descripcion|default:titulo }}" class="h-64 w-auto max-w-[85%] shrink-0 snap-center rounded-xl object-cover sm:h-80" loading="lazy">{% endfor %}
+    {% for v in videos %}
+      {% if v.archivo %}
+        <video controls preload="metadata" playsinline aria-label="{{ v.titulo|default:titulo }}" class="h-64 w-auto max-w-[85%] shrink-0 snap-center rounded-xl bg-black sm:h-80"{% if v.portada %} poster="{{ v.portada.url }}"{% endif %}><source src="{{ v.archivo.url }}"></video>
+      {% else %}
+        <a href="{{ v.enlace }}" target="_blank" rel="noopener noreferrer" class="flex h-64 w-56 shrink-0 snap-center items-center justify-center rounded-xl border border-bosque-800/30 p-4 text-center text-sm text-bosque-800 transition hover:bg-bosque-800 hover:text-white sm:h-80">{{ v.titulo|default:titulo }} · {% translate "Ver en el sitio original" %} →</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <button type="button" data-ir="-1" aria-label="{% translate 'Ver anterior' %}" class="pointer-events-none absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-beige-100/95 text-bosque-800 opacity-0 shadow-lg ring-1 ring-bosque-800/20 transition hover:bg-white focus-visible:opacity-100">
+    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <button type="button" data-ir="1" aria-label="{% translate 'Ver siguiente' %}" class="pointer-events-none absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-beige-100/95 text-bosque-800 opacity-0 shadow-lg ring-1 ring-bosque-800/20 transition hover:bg-white focus-visible:opacity-100">
+    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+</div>
+{% endif %}

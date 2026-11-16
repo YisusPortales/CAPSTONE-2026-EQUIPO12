@@ -122,7 +122,7 @@ class ResenaAdmin(AccionesFilaMixin, admin.ModelAdmin):
         return {k: v for k, v in acciones.items() if k == "delete_selected"}    
 
 
-# ---------------------------------------------------------- Solicitudes de reserva
+# ------ Solicitudes de reserva -------
 @admin.register(SolicitudReserva)
 class SolicitudReservaAdmin(AccionesFilaMixin, admin.ModelAdmin):
     list_display = (
@@ -288,10 +288,10 @@ class FotoAdmin(admin.ModelAdmin):
 
 @admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ("nombre", "tipo", "orden", "activo", "creado")
-    list_editable = ("orden", "activo")
-    list_filter = ("activo",)
-    fields = ("titulo", "archivo", "enlace", "portada", "orden", "activo")
+    list_display = ("nombre", "tipo", "categoria", "orden", "activo", "creado")
+    list_editable = ("categoria", "orden", "activo")
+    list_filter = ("categoria", "activo")
+    fields = ("titulo", "archivo", "enlace", "portada", "categoria", "orden", "activo")
 
     @admin.display(description="Video")
     def nombre(self, obj):

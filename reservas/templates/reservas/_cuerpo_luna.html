@@ -1,0 +1,11 @@
+{% load i18n %}
+{% translate "Hola, quisiera consultar por el Baño de luna." as msg_wa %}
+<p class="font-display text-xl text-bosque-800">{% translate "Una experiencia para conectar, renovar y dejar fluir." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "En Hospedaje Rural Pirque te invitamos a vivir una experiencia mágica y transformadora bajo la luz de la Luna Llena." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "El Baño de Luna es un encuentro especial con la energía de la naturaleza, un espacio para detenerte, conectar contigo mismo y abrirte a nuevas posibilidades." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "A través de una experiencia que integra elementos de la naturaleza y una mirada energética inspirada en la física cuántica, buscamos movilizar y renovar aquellas energías que deseas transformar, soltar lo que ya no necesitas y dar espacio a nuevas intenciones." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "Bajo la luz de la Luna Llena, te invitamos a regalarte un momento de conexión, introspección y armonía, en un entorno natural que invita a reconectar con lo esencial." %}</p>
+<p class="border-l-2 border-terracota-600 pl-4 font-display text-lg text-bosque-800">{% translate "Una experiencia que solo se realiza durante la Luna Llena." %}</p>
+<p class="leading-relaxed text-tinta/80">{% translate "Ven a vivir la magia de la naturaleza, regálate un momento para ti y renueva tus energías." %}</p>
+<p class="text-sm italic text-tinta/60">{% translate "Conecta con la naturaleza. Reconecta contigo." %}</p>
+{% if sitio.whatsapp_numero %}<a href="https://wa.me/{{ sitio.whatsapp_numero }}?text={{ msg_wa|urlencode }}" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center bg-bosque-800 px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white transition hover:opacity-90">{% translate "Reservar por WhatsApp" %}</a>{% endif %}

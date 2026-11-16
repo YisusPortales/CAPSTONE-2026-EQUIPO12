@@ -5,7 +5,7 @@
     {# Logo + redes #}
     <div class="flex items-center gap-4">
       <a href="{% url 'reservas:solicitar' %}" class="flex items-center" aria-label="Hospedaje Rural Pirque">
-        <img src="{% static 'img/idea-logo2.png' %}" alt="" style="height:4rem;width:auto">
+        <img src="{% static 'img/IdeaLogo1.png' %}" alt="" style="height:4rem;width:auto">
       </a>
       <div class="flex items-center gap-3 border-l border-white/25 pl-4">
         <a href="{{ sitio.instagram_url }}" target="_blank" rel="noopener noreferrer" class="text-white/80 transition hover:text-white" aria-label="Instagram">
@@ -19,7 +19,7 @@
 
     {# Menú de escritorio #}
     <nav id="menu-escritorio" class="hidden items-center gap-7 text-[0.7rem] font-medium uppercase tracking-[0.15em] lg:flex" aria-label="{% translate 'Principal' %}">
-      <a href="{% url 'reservas:solicitar' %}" data-ir-arriba class="transition hover:text-beige-200">{% translate "La casa" %}</a>
+      <a href="{% url 'reservas:solicitar' %}" data-ir-arriba class="transition hover:text-beige-200">{% translate "Inicio" %}</a>
       <a href="{% url 'reservas:solicitar' %}#habitaciones" class="transition hover:text-beige-200">{% translate "Habitaciones" %}</a>
       <a href="{% url 'reservas:solicitar' %}#experiencias" class="transition hover:text-beige-200">{% translate "Experiencias" %}</a>
       <a href="{% url 'reservas:solicitar' %}#ubicacion" class="transition hover:text-beige-200">{% translate "Ubicación" %}</a>
@@ -78,7 +78,7 @@
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </summary>
         <nav class="absolute right-0 top-full mt-4 w-64 border border-white/20 bg-bosque-950/95 py-2 text-xs uppercase tracking-[0.15em] backdrop-blur-sm" aria-label="{% translate 'Móvil' %}">
-          <a href="{% url 'reservas:solicitar' %}" data-ir-arriba class="block px-5 py-3 hover:bg-white/10">{% translate "La casa" %}</a>
+          <a href="{% url 'reservas:solicitar' %}" data-ir-arriba class="block px-5 py-3 hover:bg-white/10">{% translate "Inicio" %}</a>
           <a href="{% url 'reservas:solicitar' %}#habitaciones" class="block px-5 py-3 hover:bg-white/10">{% translate "Habitaciones" %}</a>
           <a href="{% url 'reservas:solicitar' %}#experiencias" class="block px-5 py-3 hover:bg-white/10">{% translate "Experiencias" %}</a>
           <a href="{% url 'reservas:solicitar' %}#ubicacion" class="block px-5 py-3 hover:bg-white/10">{% translate "Ubicación" %}</a>
