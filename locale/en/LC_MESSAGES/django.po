@@ -839,3 +839,30 @@ msgstr "Hello, I would like to ask about using the space for a workshop or retre
 
 msgid "Talleres y experiencias únicas"
 msgstr "Workshops and unique experiences"
+
+msgid "La habitación con baño privado, para quienes buscan más intimidad. Cama matrimonial más una cama de 1 plaza, con espacio para 2 o 3 huéspedes; la ocupación ideal es de dos personas. Cada estadía incluye desayuno con productos locales, Wi-Fi y estacionamiento."
+msgstr "The room with a private bathroom, for those who want more privacy. A double bed plus a single bed, with room for 2 or 3 guests; ideal occupancy is two people. Every stay includes breakfast with local products, Wi-Fi and parking."
+
+msgid "Una habitación flexible para grupos y familias. Camarote y cama individual, con baño compartido. La ocupación ideal es de dos personas, con posibilidad de sumar camas. Cada estadía incluye desayuno con productos locales, Wi-Fi y estacionamiento."
+msgstr "A flexible room for groups and families. A bunk bed and a single bed, with a shared bathroom. Ideal occupancy is two people, with the option to add beds. Every stay includes breakfast with local products, Wi-Fi and parking."
+
+msgid "Entre las viñas que puedes conocer: Concha y Toro, Alyan Family Wines, Haras de Pirque, William Fèvre y Santa Rita."
+msgstr "Among the vineyards you can visit: Concha y Toro, Alyan Family Wines, Haras de Pirque, William Fèvre and Santa Rita."
+
+msgid "Si prefieres la montaña, también organizamos salidas a Lagunillas o al embalse El Yeso."
+msgstr "If you prefer the mountains, we also arrange outings to Lagunillas or the El Yeso reservoir."
+
+msgid "Sala de reuniones"
+msgstr "Meeting room"
+
+msgid "Espacio natural"
+msgstr "Natural space"
+
+msgid "Arrienda la sala de reuniones del hospedaje, en el hall central. Cuenta con TV conectada a computador para presentaciones, talleres y jornadas de trabajo."
+msgstr "Rent the lodge's meeting room, in the central hall. It has a TV that connects to a computer for presentations, workshops and work sessions."
+
+msgid "Arrienda el patio y los espacios exteriores para asados, cumpleaños, matrimonios y otras celebraciones, rodeado de naturaleza."
+msgstr "Rent the patio and outdoor areas for barbecues, birthdays, weddings and other celebrations, surrounded by nature."
+
+msgid "Trabajamos con transparencia. Queremos que conozcas quiénes somos y cómo trabajamos antes de reservar, por eso ponemos a tu disposición los certificados y registros que respaldan nuestro servicio. Revísalos con el botón de abajo y, si tienes dudas, escríbenos."
+msgstr "We work with transparency. We want you to know who we are and how we work before you book, so we make available the certificates and registrations that back our service. Review them with the button below and, if you have any questions, write to us."

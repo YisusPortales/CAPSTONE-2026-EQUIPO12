@@ -174,7 +174,7 @@
             <span><span class="block font-display text-2xl text-bosque-800">{% translate "Tour de las viñas" %}</span><span class="mt-1 block text-sm text-tinta/70">{% translate "Un recorrido por el valle, con el hospedaje como punto de partida." %}</span></span></button></li>
         <li><button type="button" data-panel="panel-talleres"
             class="flex w-full items-start justify-between gap-6 py-6 text-left transition hover:bg-bosque-800/5">
-            <span><span class="block font-display text-2xl text-bosque-800">{% translate "Capacitaciones, talleres y experiencias únicas" %}</span><span class="mt-1 block text-sm text-tinta/70">{% translate "Consulta por tu proyecto." %}</span></span></button></li>
+            <span><span class="block font-display text-2xl text-bosque-800">{% translate "Talleres y experiencias únicas" %}</span><span class="mt-1 block text-sm text-tinta/70">{% translate "Consulta por tu proyecto." %}</span></span></button></li>
         </li>
       </ul>
     </div>
@@ -242,7 +242,7 @@
   <div class="mx-auto max-w-3xl px-5 text-center lg:px-8">
     <p class="text-[0.7rem] font-medium uppercase tracking-[0.25em] text-terracota-600">{% translate "Nosotros" %}</p>
     <h2 class="mt-4 font-display text-4xl font-light text-bosque-800 md:text-6xl">{% translate "Certificados" %}</h2>
-    <p class="mt-6 leading-relaxed text-tinta/80">{% translate "Aquí se mostrarán los certificados del hospedaje. El cliente enviará las imágenes." %}</p>
+    <p class="mt-6 leading-relaxed text-tinta/80">{% translate "Trabajamos con transparencia. Queremos que conozcas quiénes somos y cómo trabajamos antes de reservar, por eso ponemos a tu disposición los certificados y registros que respaldan nuestro servicio. Revísalos con el botón de abajo y, si tienes dudas, escríbenos." %}</p>
     <button type="button" data-panel="panel-certificados"
       class="mt-8 inline-flex items-center gap-3 rounded-full bg-bosque-800 px-6 py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-white transition hover:bg-bosque-950">
       {% translate "Ver certificados" %} <span aria-hidden="true">→</span>
@@ -422,12 +422,11 @@
 {% translate "Baño privado" as txt_bano_privado %}
 {% translate "Baño compartido" as txt_bano_compartido %}
 {% translate "Camarote + cama individual" as txt_camarote %}
-{% translate "Descripción de ejemplo para esta experiencia." as txt_ejemplo %}
-{% include "reservas/_panel.html" with id="panel-suite" titulo=_("La Suite") imagen_1="img/suite1.jpg" imagen_2="img/bano1.jpg" detalle=txt_bano_privado texto=txt_ejemplo %}
-{% include "reservas/_panel.html" with id="panel-familiar-1" titulo=_("Habitación Familiar 1") imagen_1="img/habitaciondoble.jpg" imagen_2="img/bano2.jpg" detalle=txt_camarote texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-suite" titulo=_("La Suite") imagen_1="img/suite1.jpg" imagen_2="img/bano1.jpg" detalle=txt_bano_privado texto=_("La habitación con baño privado, para quienes buscan más intimidad. Cama matrimonial más una cama de 1 plaza, con espacio para 2 o 3 huéspedes; la ocupación ideal es de dos personas. Cada estadía incluye desayuno con productos locales, Wi-Fi y estacionamiento.") %}
+{% include "reservas/_panel.html" with id="panel-familiar-1" titulo=_("Habitación Familiar 1") imagen_1="img/habitaciondoble.jpg" imagen_2="img/bano2.jpg" detalle=txt_camarote texto=_("Una habitación flexible para grupos y familias. Camarote y cama individual, con baño compartido. La ocupación ideal es de dos personas, con posibilidad de sumar camas. Cada estadía incluye desayuno con productos locales, Wi-Fi y estacionamiento.") %}
+{% include "reservas/_panel.html" with id="panel-familiar-2" titulo=_("Habitación Familiar 2") imagen_1="img/habitaciondoble.jpg" imagen_2="img/bano3.jpg" detalle=txt_camarote texto=_("Una habitación flexible para grupos y familias. Camarote y cama individual, con baño compartido. La ocupación ideal es de dos personas, con posibilidad de sumar camas. Cada estadía incluye desayuno con productos locales, Wi-Fi y estacionamiento.") %}
 {% include "reservas/_panel.html" with id="panel-tour" titulo=_("Tour de las viñas") detalle=_("Experiencia") cuerpo="reservas/_cuerpo_tour.html" %}
-{% include "reservas/_panel.html" with id="panel-talleres" titulo=_("Capacitaciones, talleres y experiencias únicas") detalle=_("Experiencia") cuerpo="reservas/_cuerpo_talleres.html" %}
-{% include "reservas/_panel.html" with id="panel-familiar-2" titulo=_("Habitación Familiar 2") imagen_1="img/habitaciondoble.jpg" imagen_2="img/bano3.jpg" detalle=txt_camarote texto=txt_ejemplo %}
+{% include "reservas/_panel.html" with id="panel-talleres" titulo=_("Talleres y experiencias únicas") detalle=_("Experiencia") cuerpo="reservas/_cuerpo_talleres.html" %}
 {% include "reservas/_panel.html" with id="panel-piedra" titulo=_("Baño de arena volcánica") detalle=_("Bienestar") fotos=arena_fotos videos=arena_videos cuerpo="reservas/_cuerpo_arena.html" %}
 {% include "reservas/_panel.html" with id="panel-banos" titulo=_("Baños de luna") detalle=_("Bienestar") fotos=luna_fotos videos=luna_videos cuerpo="reservas/_cuerpo_luna.html" %}
 {% include "reservas/_panel_certificados.html" %}

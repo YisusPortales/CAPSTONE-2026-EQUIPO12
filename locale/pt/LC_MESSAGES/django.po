@@ -839,3 +839,30 @@ msgstr "Olá, gostaria de consultar sobre o uso do espaço para uma oficina ou j
 
 msgid "Talleres y experiencias únicas"
 msgstr "Workshops e experiências únicas"
+
+msgid "La habitación con baño privado, para quienes buscan más intimidad. Cama matrimonial más una cama de 1 plaza, con espacio para 2 o 3 huéspedes; la ocupación ideal es de dos personas. Cada estadía incluye desayuno con productos locales, Wi-Fi y estacionamiento."
+msgstr "O quarto com banheiro privativo, para quem busca mais privacidade. Cama de casal mais uma cama de solteiro, com espaço para 2 ou 3 hóspedes; a ocupação ideal é de duas pessoas. Cada estadia inclui café da manhã com produtos locais, Wi-Fi e estacionamento."
+
+msgid "Una habitación flexible para grupos y familias. Camarote y cama individual, con baño compartido. La ocupación ideal es de dos personas, con posibilidad de sumar camas. Cada estadía incluye desayuno con productos locales, Wi-Fi y estacionamiento."
+msgstr "Um quarto flexível para grupos e famílias. Beliche e cama de solteiro, com banheiro compartilhado. A ocupação ideal é de duas pessoas, com possibilidade de adicionar camas. Cada estadia inclui café da manhã com produtos locais, Wi-Fi e estacionamento."
+
+msgid "Entre las viñas que puedes conocer: Concha y Toro, Alyan Family Wines, Haras de Pirque, William Fèvre y Santa Rita."
+msgstr "Entre as vinícolas que você pode conhecer: Concha y Toro, Alyan Family Wines, Haras de Pirque, William Fèvre e Santa Rita."
+
+msgid "Si prefieres la montaña, también organizamos salidas a Lagunillas o al embalse El Yeso."
+msgstr "Se preferir a montanha, também organizamos passeios a Lagunillas ou à represa El Yeso."
+
+msgid "Sala de reuniones"
+msgstr "Sala de reuniões"
+
+msgid "Espacio natural"
+msgstr "Espaço natural"
+
+msgid "Arrienda la sala de reuniones del hospedaje, en el hall central. Cuenta con TV conectada a computador para presentaciones, talleres y jornadas de trabajo."
+msgstr "Alugue a sala de reuniões da hospedagem, no hall central. Conta com TV conectada a computador para apresentações, workshops e jornadas de trabalho."
+
+msgid "Arrienda el patio y los espacios exteriores para asados, cumpleaños, matrimonios y otras celebraciones, rodeado de naturaleza."
+msgstr "Alugue o pátio e os espaços externos para churrascos, aniversários, casamentos e outras celebrações, cercado de natureza."
+
+msgid "Trabajamos con transparencia. Queremos que conozcas quiénes somos y cómo trabajamos antes de reservar, por eso ponemos a tu disposición los certificados y registros que respaldan nuestro servicio. Revísalos con el botón de abajo y, si tienes dudas, escríbenos."
+msgstr "Trabalhamos com transparência. Queremos que você saiba quem somos e como trabalhamos antes de reservar, por isso disponibilizamos os certificados e registros que respaldam nosso serviço. Confira-os no botão abaixo e, em caso de dúvidas, escreva para nós."
